@@ -1,0 +1,22 @@
+if ($LOGNAME == "root") then
+	set -f path = ( $path /sbin )
+	set -f path = ( $path /usr/sbin )
+	set -l path = ( $path /usr/local/sbin )
+endif
+
+set -f path = ( $path /bin )
+set -f path = ( $path /usr/bin )
+set -l path = ( $path /usr/local/bin )
+
+set -l path = ( $path /usr/local/ssl/bin )
+set -l path = ( $path /usr/local/samba/bin )
+set -l path = ( $path /usr/local/java/bin )
+set -l path = ( $path /usr/games )
+
+if ($?USER == 0 || $?prompt == 0) exit
+source $HOME/.tcshrc.set
+source $HOME/.tcshrc.alias
+#source $HOME/.tcshrc.bindkey
+source $HOME/.tcshrc.complete
+source $HOME/.tcshrc.local
+

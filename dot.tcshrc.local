@@ -1,0 +1,8 @@
+set history=2048
+set histdup
+set savehist=2048
+set histfile = ~/.tcsh_history
+setenv  EDITOR  vim
+setenv  PAGER   less
+setenv  BLOCKSIZE       K
+bindkey "^W" backward-delete-word

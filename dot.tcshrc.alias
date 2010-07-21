@@ -1,0 +1,22 @@
+alias ls	'ls -A'
+alias ll	'ls -l'
+
+alias ls 	'ls -A'
+if ( -e `where less` ) then
+	alias more 	'less'
+endif
+alias today 	"date '+%d%h%y'"
+
+if ( -e `where vim`) then
+	alias vi 	'vim'
+endif
+
+if ( -e `where most`) then
+	alias man 	'man -P most'
+endif
+
+alias mplayer	'mplayer -softvol -af volume=-19 -cache 8192'
+alias mplayerv0	'mplayer -softvol -af volume=0 -cache 8192'
+alias vncviewer '/usr/local/lib/ssvnc/vncviewer'
+alias top 'top -Pa'
+alias peonia 'ssh peonia'
