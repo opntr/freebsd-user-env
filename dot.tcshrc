@@ -13,6 +13,8 @@ set -l path = ( $path /usr/local/samba/bin )
 set -l path = ( $path /usr/local/java/bin )
 set -l path = ( $path /usr/games )
 
+umask 22
+
 if ($?USER == 0 || $?prompt == 0) exit
 source $HOME/.tcshrc.set
 source $HOME/.tcshrc.alias
