@@ -43,7 +43,7 @@ set prompt2="%R? "
 # 	y: yes, n: no, e: edit
 # 	<SPACE>: yes
 # 	<ENTER>: no
-set prompt3="CORRECT> %B%R%b (y|n|e)?"
+set prompt3="CORRECT> %B%R%b (y|n|e)? "
 
 # Don't beep at all...
 # beeping is annoying, perhaps it is good only when you learn TCSH.
