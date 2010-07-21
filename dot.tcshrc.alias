@@ -17,6 +17,21 @@ endif
 
 alias mplayer	'mplayer -softvol -af volume=-19 -cache 8192'
 alias mplayerv0	'mplayer -softvol -af volume=0 -cache 8192'
-alias vncviewer '/usr/local/lib/ssvnc/vncviewer'
 alias top 'top -Pa'
 alias peonia 'ssh peonia'
+
+alias src_update '(cd /usr/data/source/git/7-STABLE.git; '\
+		'git svn rebase;' \
+		'echo "--------------------------------------------------------------------------------";' 		\
+		'cd /usr/src;' 		\
+		'git pull;'		\
+		'echo "++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++")'		\
+		'|& tee -a /tmp/git_log_all_warns' \
+		'| grep --line-buffered -E -v "^Couldn.t find revmap for svn://svn\.freebsd\.org/base/stable/7"' \
+	       	'| less'
+alias ports_update 'portsnap fetch update | less'
+alias top 'top -Pa'
+alias kernel_build '(cd /usr/src; make -j5 buildworld kernel) |& tee ~/cc-log-`date "+%Y%m%d%H%M%S"`'
+alias kernel_build3 '(cd /usr/src; make -j5 buildkernel) |& tee ~/cc-log-`date "+%Y%m%d%H%M%S"`'
+alias kernel_build2 '(cd /usr/src; make -j5 kernel) |& tee ~/cc-log-`date "+%Y%m%d%H%M%S"`'
+alias portupgrade 'portupgrade -L /tmp/portupgrade-%s::%s.log'
