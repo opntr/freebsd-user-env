@@ -1018,7 +1018,7 @@ n@public@'`[ -r /usr/man/manp ]&& \ls -1 /usr/man/manp | sed s%\\.p.\*\$%%`'@ \
 	if (! $?traditional_complete) then
     uncomplete vi
     uncomplete vim
-    complete {vi,vim,gvim,nvi,elvis} 	n/*/f:^*.{o,a,so,sa,aux,dvi,log,fig,bbl,blg,bst,idx,ilg,ind,toc}/
+    complete {vi,vim,gvim,nvi,elvis} 	n/*/f:^*.{o,a,so,sa,aux,dvi,fig,bbl,blg,bst,idx,ilg,ind,toc}/
     complete {ispell,spell,spellword}	'n@-d@`ls /usr/lib/ispell/*.aff | sed -e "s/\.aff//" `@' 'n/*/f:^*.{o,a,so,sa,aux,dvi,log,fig,bbl,blg,bst,idx,ilg,ind,toc}/'
     complete elm	'n/-[Ai]/f/' 'c@=@F:$HOME/Mail/@' 'n/-s/x:\<subject\>/'
     complete ncftp	'n@*@`sed -e '1,2d' $HOME/.ncftp/bookmarks | cut -f 1,2 -d "," | tr "," "\012" | sort | uniq ` '@
