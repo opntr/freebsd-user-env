@@ -151,6 +151,7 @@ endif
 
     complete limit	c/-/"(h)"/ n/*/l/
     complete unlimit	c/-/"(h)"/ n/*/l/
+    complete sysctl	'n/*/`sysctl -Na`/'
 
 if ($?traditional_complete) then
     complete zcat	n/*/f:*.Z/
