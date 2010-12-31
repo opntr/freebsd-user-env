@@ -6,3 +6,4 @@ setenv  EDITOR  vim
 setenv  PAGER   less
 setenv  BLOCKSIZE       K
 bindkey "^W" backward-delete-word
+setenv	LOCKPRG	/usr/bin/lock
