@@ -22,7 +22,6 @@ alias vlock 	'clear && lock -p -n'
 alias screen	'tmux'
 alias lsof	'fstat'
 alias pstree	'ps -d'
-alias top	'top -P'
 
 alias src_update '(cd /usr/data/source/git/7-STABLE.git; '\
 		'git svn rebase;' \
