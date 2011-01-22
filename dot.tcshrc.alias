@@ -17,12 +17,12 @@ endif
 
 alias mplayer	'mplayer -softvol -af volume=-19 -cache 8192'
 alias mplayerv0	'mplayer -softvol -af volume=0 -cache 8192'
-alias top 'top -Pa'
-alias vlock 'clear && lock -p -n'
-alias screen 'tmux'
-alias lsof 'fstat'
-alias peonia 'ssh peonia'
-alias oliverp 'ssh oliverp'
+alias top 	'top -Pa'
+alias vlock 	'clear && lock -p -n'
+alias screen	'tmux'
+alias lsof	'fstat'
+alias pstree	'ps -d'
+alias top	'top -P'
 
 alias src_update '(cd /usr/data/source/git/7-STABLE.git; '\
 		'git svn rebase;' \
@@ -34,6 +34,5 @@ alias src_update '(cd /usr/data/source/git/7-STABLE.git; '\
 		'| grep --line-buffered -E -v "^Couldn.t find revmap for svn://svn\.freebsd\.org/base/stable/7"' \
 	       	'| less'
 alias ports_update 'portsnap fetch update | less'
-alias top 'top -P'
 alias kernel_build '(cd /usr/src; make -j5 buildworld kernel) |& tee ~/cc-log-`date "+%Y%m%d%H%M%S"`'
 alias portupgrade 'portupgrade -L /root/upgrade/`date "+%Y%m%d%H%M%S"`-portupgrade-%s::%s.log'

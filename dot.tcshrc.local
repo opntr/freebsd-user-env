@@ -1,9 +1,11 @@
-set history=2048
-set histdup
-set savehist=2048
-set histfile = ~/.tcsh_history
-setenv  EDITOR  vim
-setenv  PAGER   less
-setenv  BLOCKSIZE       K
-bindkey "^W" backward-delete-word
-setenv	LOCKPRG	/usr/bin/lock
+set	history=2048
+set	histdup
+set	savehist=2048
+set	histfile = ~/.tcsh_history
+setenv  EDITOR		vim
+setenv  PAGER		less
+setenv  BLOCKSIZE	K
+bindkey "^W"		backward-delete-word
+setenv	LOCKPRG		/usr/bin/lock
+alias	peonia		'ssh peonia'
+alias	oliverp		'ssh oliverp'
