@@ -34,4 +34,4 @@ alias src_update '(cd /usr/data/source/git/7-STABLE.git; '\
 	       	'| less'
 alias ports_update 'portsnap fetch update | less'
 alias kernel_build '(cd /usr/src; make -j5 buildworld kernel) |& tee ~/cc-log-`date "+%Y%m%d%H%M%S"`'
-alias portupgrade 'portupgrade -L /root/upgrade/`date "+%Y%m%d%H%M%S"`-portupgrade-%s::%s.log'
+alias portupgrade 'portupgrade -L /root/upgrade/`date "+%Y%m%d%H%M%S"`-portupgrade-%s::%s.log -u'
