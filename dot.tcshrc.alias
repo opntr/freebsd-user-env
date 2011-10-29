@@ -19,7 +19,6 @@ alias mplayer	'mplayer -softvol -af volume=-19 -cache 8192'
 alias mplayerv0	'mplayer -softvol -af volume=0 -cache 8192'
 alias top 	'top -Pa'
 alias vlock 	'clear && lock -p -n'
-alias screen	'tmux'
 alias lsof	'fstat'
 alias pstree	'ps -d'
 
