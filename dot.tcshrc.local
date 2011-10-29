@@ -9,3 +9,4 @@ bindkey "^W"		backward-delete-word
 setenv	LOCKPRG		/usr/bin/lock
 alias	peonia		'ssh peonia'
 alias	oliverp		'ssh oliverp'
+alias	mount_msdosfs	'mount -t msdosfs -o -u=op,-g=op,noexec,nosuid,-M=0755,-m=0644,longnames'
