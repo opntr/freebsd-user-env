@@ -25,24 +25,9 @@ map! <F3> Acked-by: Oliver Pinter <oliver.pntr@gmail.com><CR>
 map <F4> ^iTested-by: Oliver Pinter <oliver.pntr@gmail.com><CR><ESC>^
 map! <F4> Tested-by: Oliver Pinter <oliver.pntr@gmail.com><CR>
 
-
 inoremap <Nul> <C-x><C-o>
 autocmd FileType c set omnifunc=ccomplete#Complete
 autocmd FileType python set omnifunc=pythoncomplete#Complete
 map <silent><C-Left> <C-T>
 map <silent><C-Right> <C-]>
 map <F12> :!exctags -f $HOME/.vim/tags/current.ctags -R --c++-kinds=+p --fields=+iaS --extra=+q .<CR>
-function! SuperCleverTab()
-	if strpart(getline('.'), 0, col('.') - 1) =~ '^\s*$'
-	    return "\<Tab>"
-	else
-		if &omnifunc != ''
-			return "\<C-X>\<C-O>"
-		elseif &dictionary != ''
-			return "\<C-K>"
-		else
-			return "\<C-N>"
-		endif
-	endif
-endfunction
-
