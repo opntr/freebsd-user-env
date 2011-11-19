@@ -27,6 +27,7 @@ alias src_update '(cd /usr/data/source/git/7-STABLE.git; '\
 		'echo "--------------------------------------------------------------------------------";' 		\
 		'cd /usr/src;' 		\
 		'git pull;'		\
+		'git tag 7-STABLE-`date "+%Y%m%d%H%M%S"`;'	\
 		'echo "++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++")'		\
 		'|& tee -a /tmp/git_log_all_warns' \
 		'| grep --line-buffered -E -v "^Couldn.t find revmap for svn://svn\.freebsd\.org/base/stable/7"' \
