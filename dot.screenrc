@@ -1,0 +1,9 @@
+startup_message off
+login 		off
+deflogin	off
+#hardstatus alwayslastline "%?%{yk}%-Lw%?%{wb}%n*%f %t%?(%u)%?%?%{yk}%+Lw%? | %H | %d-%m-%Y %c"
+hardstatus alwayslastline
+hardstatus string "%{.bW}%-w%{.rW}%n %t%{-}%+w %=%{..G} %H %{..Y} %d/%m %c"
+#monitor		on
+defscrollback	1000
+idle		300	lockscreen

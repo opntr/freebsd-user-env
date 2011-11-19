@@ -7,3 +7,4 @@ install:
 	install -m 0440 dot.tcshrc.local	$(HOME)/.tcshrc.local
 	install -m 0440 dot.tcshrc.set		$(HOME)/.tcshrc.set
 	install -m 0440 dot.vimrc		$(HOME)/.vimrc
+	install -m 0440 dot.screenrc		$(HOME)/.screenrc
