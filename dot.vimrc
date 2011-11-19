@@ -10,7 +10,7 @@ set		cindent
 set		hlsearch
 "tab-ok es space-ek kiemelese"
 ""set list listchars=tab:>-,trail:.,extends:>""
-set		list listchars=tab:»\ ,extends:>
+"set		list listchars=tab:»\ ,extends:>
 
 set		tags+=$HOME/.vim/tags/current.ctags
 set		tags+=$HOME/.vim/tags/system.ctags
