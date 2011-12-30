@@ -15,8 +15,6 @@ if ( -e `where most`) then
 	alias man 	'man -P most'
 endif
 
-alias mplayer	'mplayer -softvol -af volume=-19 -cache 8192'
-alias mplayerv0	'mplayer -softvol -af volume=0 -cache 8192'
 alias top 	'top -Pa'
 alias vlock 	'clear && lock -p -n'
 alias lsof	'fstat'

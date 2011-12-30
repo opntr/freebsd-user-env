@@ -10,3 +10,5 @@ setenv	LOCKPRG		/usr/bin/lock
 alias	peonia		'ssh peonia'
 alias	oliverp		'ssh oliverp'
 alias	mount_msdosfs	'mount -t msdosfs -o -u=op,-g=op,noexec,nosuid,-M=0755,-m=0644,longnames'
+alias	mplayer		'mplayer -softvol -af volume=-19 -cache 8192'
+alias	mplayerv0	'mplayer -softvol -af volume=0 -cache 8192'
