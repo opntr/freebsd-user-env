@@ -9,4 +9,4 @@ install:
 	install -m 0440 dot.tcshrc.set		$(HOME)/.tcshrc.set
 	install -m 0440 dot.vimrc		$(HOME)/.vimrc
 	install -m 0440 dot.screenrc		$(HOME)/.screenrc
-	install -m 0440 src_update.csh		$(HOME)/bin/src_update.csh
+	install -m 0550 src_update.csh		$(HOME)/bin/src_update.csh
