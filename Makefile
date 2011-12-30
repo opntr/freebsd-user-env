@@ -1,4 +1,5 @@
 install:
+	install -d -m 0750 $(HOME)/bin
 	install -m 0440 dot.tcshrc 		$(HOME)/.tcshrc
 	install -m 0440 dot.tcshrc.alias	$(HOME)/.tcshrc.alias
 	install -m 0440 dot.tcshrc.bindkey	$(HOME)/.tcshrc.bindkey
@@ -8,3 +9,4 @@ install:
 	install -m 0440 dot.tcshrc.set		$(HOME)/.tcshrc.set
 	install -m 0440 dot.vimrc		$(HOME)/.vimrc
 	install -m 0440 dot.screenrc		$(HOME)/.screenrc
+	install -m 0440 src_update.csh		$(HOME)/bin/src_update.csh
