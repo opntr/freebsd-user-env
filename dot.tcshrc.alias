@@ -19,7 +19,7 @@ alias top 	'top -Pa'
 alias vlock 	'clear && lock -p -n'
 alias lsof	'fstat'
 alias pstree	'ps -d'
-alias src_update '(src_update.csh)' \
+alias src_update 'src_update.csh' \
 		'|& tee -a /tmp/git_log_all_warns' \
 		'| grep --line-buffered -E -v "^Couldn.t find revmap for svn://svn\.freebsd\.org/base/stable/7"' \
 	       	'| less'

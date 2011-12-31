@@ -10,7 +10,7 @@ set old_revision="git rev-list HEAD -1"
 git svn rebase
 set new_revision="git rev-list HEAD -1"
 
-if ( "$old_revision" != "$new_revision") then
+if ( "$old_revision" != "$new_revision" ) then
 	echo "--------------------------------------------------------------------------------"
 	cd /usr/src
 	git pull
