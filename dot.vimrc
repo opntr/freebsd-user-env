@@ -13,8 +13,10 @@ set		hlsearch
 "set		list listchars=tab:»\ ,extends:>
 
 set		tags+=$HOME/.vim/tags/current.ctags
+"set		tags+=$HOME/.vim/tags/cryptopp.ctags
 set		tags+=$HOME/.vim/tags/system.ctags
-set		tags+=$HOME/.vim/tags/glib.ctags
+"set		tags+=$HOME/.vim/tags/glib.ctags
+"set		tags+=$HOME/.vim/tags/gl.ctags
 
 map <F1> ^iSigned-off-by: Oliver Pinter <oliver.pntr@gmail.com><CR><ESC>^
 map! <F1> Signed-off-by: Oliver Pinter <oliver.pntr@gmail.com><CR>
@@ -24,10 +26,12 @@ map <F3> ^iAcked-by: Oliver Pinter <oliver.pntr@gmail.com><CR><ESC>^
 map! <F3> Acked-by: Oliver Pinter <oliver.pntr@gmail.com><CR>
 map <F4> ^iTested-by: Oliver Pinter <oliver.pntr@gmail.com><CR><ESC>^
 map! <F4> Tested-by: Oliver Pinter <oliver.pntr@gmail.com><CR>
-
-inoremap <Nul> <C-x><C-o>
 autocmd FileType c set omnifunc=ccomplete#Complete
 autocmd FileType python set omnifunc=pythoncomplete#Complete
+inoremap <Nul> <C-x><C-o>
 map <silent><C-Left> <C-T>
 map <silent><C-Right> <C-]>
+"screen es tmux alatt ezek a keykodok kellenek hozza
+map <silent>[1;5D <C-T>
+map <silent>[1;5C <C-]>
 map <F12> :!exctags -f $HOME/.vim/tags/current.ctags -R --c++-kinds=+p --fields=+iaS --extra=+q .<CR>
