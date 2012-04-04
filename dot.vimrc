@@ -35,3 +35,4 @@ map <silent><C-Right> <C-]>
 map <silent>[1;5D <C-T>
 map <silent>[1;5C <C-]>
 map <F12> :!exctags -f $HOME/.vim/tags/current.ctags -R --c++-kinds=+p --fields=+iaS --extra=+q .<CR>
+" omniCppComplete - http://www.vim.org/scripts/script.php?script_id=1520
