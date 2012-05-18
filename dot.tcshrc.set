@@ -18,6 +18,8 @@ set rmstar
 set fignore=(.o)
 set echo_style=both
 
+@ __freebsd_version = `sysctl -n kern.osreldate` / 100000
+
 setenv SHORT_HOST `echo $HOST | cut -f 1 -d. | tr 'a-z' 'A-Z'`
 switch ( $TERM )
       case "dtterm*":         # dtterm
