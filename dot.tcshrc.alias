@@ -23,7 +23,7 @@ alias pstree	'ps -d'
 if ($LOGNAME == "root") then
 	alias src_update '_src_update.csh' \
 			'|& tee -a /tmp/git_log_all_warns' \
-			'| grep --line-buffered -E -v "^Couldn.t find revmap for svn://svn\.freebsd\.org/base/stable/7"' \
+			'| grep --line-buffered -E -v "^Couldn.t find revmap for svn://svn\.freebsd\.org/base/stable/$__freebsd_version"' \
 			'| less'
 
 	alias ports_update 'portsnap fetch update | less'
