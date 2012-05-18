@@ -1,6 +1,8 @@
 #!/bin/csh
 
-set K_VERSION="7-STABLE"
+set OSRELDATE=`sysctl -n kern.osreldate`
+@ _OSREL = $OSRELDATE / 100000
+set K_VERSION="$_OSREL-STABLE"
 set K_SOURCE="/usr/data/source/git/$K_VERSION.git"
 
 cd $K_SOURCE
