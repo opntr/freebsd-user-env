@@ -143,7 +143,7 @@ endif
 			     anewer cnewer amin cmin mmin true false uid gid \
 			     ilname iname ipath iregex links lname empty path \
 			     regex used xtype fprint fprint0 fprintf \
-			     print0 printf not a and o or)"/ \
+			     print0 not a and o or)"/ \
 			     n/*/d/
 
     complete -%*	c/%/j/
@@ -693,7 +693,7 @@ setenv MANPATH `manpath`
 	    c@-@"(- f k M P s S t)"@ n@-f@c@ n@-k@x:'<keyword>'@ n@-[MP]@d@   \
 	    'N@-[MP]@`\ls -1 $:-1/man? |& sed -n s%\\..\\+\$%%p`@'            \
 	    'n@-[sS]@`\ls -1 $MANPATH:as%:% % |& sed -n s%^man%%p | sort -u`@'\
-	    'n@*@`find $MANPATH:as%:% % \( -type f -o -type l \) -printf "%f " |& sed -e "s%find: .*: No such file or directory%%" -e "s%\([^\.]\+\)\.\([^ ]*\) %\1 %g"`@'
+	    'n@*@`find $MANPATH:as%:% % \( -type f -o -type l \) -exec basename {} + |& sed -e "s%find: .*: No such file or directory%%" -e "s%\([^\.]\+\)\.\([^ ]*\) %\2 %g" | cut -d '.' -f 1 `@'
 
     complete ps	        c/-t/x:'<tty>'/ c/-/"(a c C e g k l S t u v w x)"/ \
 			n/-k/x:'<kernel>'/ N/-k/x:'<core_file>'/ n/*/x:'<PID>'/
