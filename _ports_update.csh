@@ -1,20 +1,20 @@
 #!/bin/csh
 
-set OSRELDATE=`sysctl -n kern.osreldate`
-@ _OSREL = $OSRELDATE / 100000
-set K_VERSION="$_OSREL-STABLE"
-set K_SOURCE="/usr/data/source/git/$K_VERSION.git"
+# git://git.freebsd.org/freebsd-ports.git
 
-cd $K_SOURCE
+set P_DIR="freebsd-ports"
+set P_SOURCE="/usr/data/source/git/$P_DIR.git"
 
-echo "----------------------------------- $K_VERSION -----------------------------------"
+cd $P_SOURCE
+
+echo "------------------------------------  PORTS   ----------------------------------"
 set old_revision="`git rev-list HEAD -1`"
-git svn rebase
+git pull
 set new_revision="`git rev-list HEAD -1`"
 
 if ( "$old_revision" != "$new_revision" ) then
 	echo "--------------------------------------------------------------------------------"
-	cd /usr/src
+	cd /usr/ports
 	git pull
 	git tag snapshot-`date "+%Y%m%d%H%M%S"`
 endif

@@ -26,7 +26,8 @@ if ($LOGNAME == "root") then
 			'| grep --line-buffered -E -v "^Couldn.t find revmap for svn://svn\.freebsd\.org/base/stable/$__freebsd_version"' \
 			'| less'
 
-	alias ports_update 'portsnap fetch update | less'
+#	alias ports_update 'portsnap fetch update | less'
+	alias ports_update '_ports_update.csh | less'
 	alias kernel_uname_diff '(cd /usr/src;'	\
 		'git log `uname -a | cut -d '+' -f 2 | cut -d ':' -f 1`..)'
 	alias build_world '(cd /usr/src; make -j$__freebsd_mk_jobs buildworld '\
