@@ -146,6 +146,26 @@ endif
 			     print0 not a and o or)"/ \
 			     n/*/d/
 
+
+    complete gpart	'p/1/(add backup bootcode commit create delete destroy modify recover resize restore set show undo unset)/' \
+			'n/add/x:-t type [-a alignment] [-b start] [-s size] [-i index] [-l label] -f flags geom/' \
+			'n/backup/x:geom/' \
+			'n/bootcode/x:[-b bootcode] [-p partcode -i index] [-f flags] geom/' \
+			'n/commit/x:geom/' \
+			'n/create/x:-s scheme [-n entries] [-f flags] provider/' \
+			'n/delete/x:-i index [-f flags] geom/' \
+			'n/destroy/x:[-F] [-f flags] geom/' \
+			'n/modify/x:-i index [-l label] [-t type] [-f flags] geom/' \
+			'n/recover/x:[-f flags] geom/' \
+			'n/resize/x:-i index [-a alignment] [-s size] [-f flags] geom/' \
+			'n/restore/x:[-lF] [-f flags] provider [...]/' \
+			'n/set/x:-a attrib -i index [-f flags] geom/' \
+			'n/show/x:[-l | -r] [-p] [geom ...]/' \
+			'n/undo/x:geom/' \
+			'n/unset/x:-a attrib -i index [-f flags] geom/'
+
+
+
     complete -%*	c/%/j/
     complete {fg,bg,stop}	c/%/j/ p/1/"(%)"//
 
@@ -199,7 +219,15 @@ endif
 			'p/1/$hosts/' 'c/-/(l L E)/' 'n/-l/u/' 'n/-L/f/' \
 			'n/-E/e/' 'n/*/c/'
     complete kill	'c/-/S/' 'c/%/j/' \
-			'n/*/`ps -u $LOGNAME | awk '"'"'{print $1}'"'"'`/'
+			'n/*/`ps -U $LOGNAME | awk '"'"'{print $1}'"'"'`/'
+
+    complete killall	'c/-/S/' 'c/%/j/' 'n/*/`ps -ax | awk '"'"'{print $5}'"'"'`/'
+
+    complete kldload	'n@*@`ls -1 /boot/modules/ /boot/kernel/ | awk -F/ \$NF\ \~\ \".ko\"\ \{sub\(\/\.ko\/,\"\",\$NF\)\;print\ \$NF\}`@'
+
+    complete kldunload	'n@*@`kldstat | awk \{sub\(\/\.ko\/,\"\",\$NF\)\;print\ \$NF\} | grep -v Name`@'
+
+    complete service  	'c/-/(e l r v)/' 'p/1/`service -l`/' 'n/*/(start stop reload restart status rcvar onestart onestop)/'
 
     complete attach 'n/-mountpoint/d/' 'n/-m/d/' 'n/-type/(afs nfs rvd ufs)/' \
 		    'n/-t/(afs nfs rvd ufs)/' 'n/-user/u/' 'n/-U/u/' \
@@ -464,9 +492,11 @@ endif
     complete exec	'p/1/c/'
     complete ghostview	'p/*/f:*.ps/'
     complete gv		'p/*/f:*.ps/'
-    complete ifconfig	'p@1@`ifconfig -l`@' 'n/*/(range phase link netmask \
-			mtu vlandev vlan metric mediaopt down delete \
-			broadcast arp debug)/'
+    complete ifconfig	'p@1@`ifconfig -l`@' \
+			'n/*/(range phase link netmask mtu vlandev vlan metric \
+			mediaopt down delete broadcast arp debug)/' \
+			'c/%/j/' \
+			'n/*/`ps -ax | awk '"'"'{print $1}'"'"'`/'
     complete imake	'c/-I/d/'
     complete ipfw 	'p/1/(flush add delete list show zero)/' \
 			'n/add/(allow permit accept pass deny drop reject \
@@ -518,6 +548,11 @@ endif
 			startfile_ok tagsoup telnet term= tlog trace traversal \
 			underscore useragent= validate verbose version vikeys \
 			width=)/' 'c/(http|ftp)/$URLS/'
+
+
+    complete make	'p@1@`make -pn | sed -n -E "/^[#_.\/[:blank:]]+/d; /=/d; s/[[:blank:]]*:.*//gp;"`@' \
+			'n@-V@`make -ndv | & grep Global: | sed -E -e "s/^Global://" -e "s/ .*//" -e "/^[[:lower:]]/d" | sort | uniq`@'
+
     complete gmake	'c/{--directory=,--include-dir=}/d/' \
 			'c/{--assume-new,--assume-old,--makefile,--new-file,--what-if,--file}/f/' \
 			'c/--/(assume-new= assume-old= debug directory= \
