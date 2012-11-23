@@ -8,7 +8,7 @@ highlight	WhitespaceEOL ctermbg=red guibg=red
 match		WhitespaceEOL /\s\+$/
 set		cindent
 set		hlsearch
-set		ckspace+=start,eol,indent
+set		backspace+=start,eol,indent
 "tab-ok es space-ek kiemelese"
 ""set list listchars=tab:>-,trail:.,extends:>""
 "set		list listchars=tab:»\ ,extends:>
