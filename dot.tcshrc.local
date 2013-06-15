@@ -6,6 +6,7 @@ setenv  EDITOR		vim
 setenv  PAGER		less
 setenv  BLOCKSIZE	K
 bindkey "^W"		backward-delete-word
+bindkey "^R"		i-search-back
 setenv	LOCKPRG		/usr/bin/lock
 alias	peonia		'ssh peonia'
 alias	oliverp		'ssh oliverp'
