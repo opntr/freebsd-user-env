@@ -1,0 +1,97 @@
+# For the benefit of emacs users: -*- shell-script -*-
+###########################
+# xbindkeys configuration #
+###########################
+#
+# Version: 1.8.3
+#
+# If you edit this file, do not forget to uncomment any lines
+# that you change.
+# The pound(#) symbol may be used anywhere for comments.
+#
+# To specify a key, you can use 'xbindkeys --key' or
+# 'xbindkeys --multikey' and put one of the two lines in this file.
+#
+# The format of a command line is:
+#    "command to start"
+#       associated key
+#
+#
+# A list of keys is in /usr/include/X11/keysym.h and in
+# /usr/include/X11/keysymdef.h
+# The XK_ is not needed.
+#
+# List of modifier:
+#   Release, Control, Shift, Mod1 (Alt), Mod2 (NumLock),
+#   Mod3 (CapsLock), Mod4, Mod5 (Scroll).
+#
+
+# The release modifier is not a standard X modifier, but you can
+# use it if you want to catch release events instead of press events
+
+# By defaults, xbindkeys does not pay attention with the modifiers
+# NumLock, CapsLock and ScrollLock.
+# Uncomment the lines above if you want to pay attention to them.
+
+#keystate_numlock = enable
+#keystate_capslock = enable
+#keystate_scrolllock= enable
+
+"mixer vol -5; mixer | osd_cat -p top -o 55 -l 20 -c yellow -d 2 -s 1 "
+	m:0x0 + c:174
+
+"mixer vol +5; mixer | osd_cat -p top -o 55 -l 20 -c yellow -d 2 -s 1 "
+	m:0x0 + c:176
+
+"mixer pcm | grep 0:0 && mixer pcm 75 || mixer pcm 0; mixer | osd_cat -p top -o 55 -l 20 -c yellow -d 2 -s 1 "
+	m:0x0 + c:140
+
+"xbacklight -inc 10 -time 0 -steps 1 && xbacklight -get | osd_cat -p top -o 55 -l 20 -c yellow -d 2 -s 1 "
+	m:0x0 + c:120
+
+"xbacklight -dec 10 -time 0 -steps 1 && xbacklight -get | osd_cat -p top -o 55 -l 20 -c yellow -d 2 -s 1 "
+	m:0x0 + c:178
+
+# unmute
+"mixer vol 100 ; mixer | osd_cat -p top -o 55 -l 20 -c yellow -d 2 -s 1"
+	Shift+Alt+Mod4 + m
+
+# mute
+"mixer vol 0 ; mixer | osd_cat -p top -o 55 -l 20 -c yellow -d 2 -s 1"
+	Alt+Mod4 + m
+
+# mixer pcm down - alt+shift+win+ -
+"mixer pcm -5; mixer | osd_cat -p top -o 55 -l 20 -c yellow -d 2 -s 1"
+	Shift+Alt+Mod4 + KP_Subtract
+
+# mixer pcm up - alt+shift+win+ +
+"mixer pcm +5; mixer | osd_cat -p top -o 55 -l 20 -c yellow -d 2 -s 1"
+	Shift+Alt+Mod4 + KP_Add
+
+# mixer master down - alt+win+ -
+"mixer vol -5; mixer | osd_cat -p top -o 55 -l 20 -c yellow -d 2 -s 1"
+	Alt+Mod4 + KP_Subtract
+
+# mixer master down - alt+win+ +
+"mixer vol +5; mixer | osd_cat -p top -o 55 -l 20 -c yellow -d 2 -s 1"
+	Alt+Mod4 + KP_Add
+
+# mocp info
+"mocp -i | osd_cat -p top -o 55 -l 20 -c yellow -d 4 -s 1"
+	Alt+Mod4 + i
+
+# mocp toggle
+"mocp -G; mocp -i | osd_cat -p top -o 55 -l 20 -c yellow -d 4 -s 1"
+	Alt+Mod4 + p
+
+# mocp forward
+"mocp -f; sleep .2; mocp -i | osd_cat -p top -o 55 -l 20 -c yellow -d 2 -s 1"
+	Alt+Mod4 + f
+
+# mocp backward
+"mocp -r; sleep .2; mocp -i | osd_cat -p top -o 55 -l 20 -c yellow -d 2 -s 1"
+	Alt+Mod4 + r
+
+##################################
+# End of xbindkeys configuration #
+##################################
