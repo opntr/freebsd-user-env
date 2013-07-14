@@ -11,3 +11,11 @@ install:
 	install -m 0440 dot.screenrc		$(HOME)/.screenrc
 	install -m 0550 _src_update.csh		$(HOME)/bin/_src_update.csh
 	install -m 0550 _ports_update.csh	$(HOME)/bin/_ports_update.csh
+
+userinstall:
+	install -m 0550 dot.xsession		$(HOME)/.xsession
+	install -m 0440 dot.Xdefaults		$(HOME)/.Xdefaults
+	install -m 0440 dot.Xmodmap		$(HOME)/.Xmodmap
+	install -m 0440 dot.xbindkeysrc		$(HOME)/.xbindkeysrc
+	install -m 0440 dot.i3status.conf	$(HOME)/.i3status.conf
+
