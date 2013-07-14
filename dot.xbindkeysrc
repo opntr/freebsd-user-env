@@ -92,6 +92,10 @@
 "mocp -r; sleep .2; mocp -i | osd_cat -p top -o 55 -l 20 -c yellow -d 2 -s 1"
 	Alt+Mod4 + r
 
+# lock screen
+"xlock"
+	Control+Alt + l
+
 ##################################
 # End of xbindkeys configuration #
 ##################################
