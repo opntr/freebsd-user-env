@@ -153,3 +153,9 @@ bar {
 	position	top
 }
 
+# Move window to specific workspace.
+# assign[class="Thunderbird"] 10
+
+# Start application on specific workspace.
+exec --no-startup-id i3-msg 'workspace 10; exec thunderbird; workspace 1'
+exec --no-startup-id i3-msg 'workspace 1; exec xterm; workspace 1'
