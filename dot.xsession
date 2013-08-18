@@ -2,4 +2,6 @@
 /usr/local/bin/xbindkeys
 /usr/local/bin/xsetroot -solid black
 /usr/local/bin/xautolock -time 5 -locker "/usr/local/bin/xlock -mode blank"&
-/usr/local/bin/i3
+TERMINAL=/usr/local/bin/uxterm
+export TERMINAL
+/usr/local/bin/i3 || /usr/local/bin/i3-config-wizard
