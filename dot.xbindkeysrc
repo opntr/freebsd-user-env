@@ -96,6 +96,10 @@
 "xlock"
 	Control+Alt + l
 
+# take a screenshot
+"import -verbose -window root /tmp/screenshot-`date +%Y%m%d%H%M%S`.png && echo screenshot created | osd_cat -p top -o 55 -l 20 -c yellow -d 2 -s 1 "
+	Print
+
 ##################################
 # End of xbindkeys configuration #
 ##################################
