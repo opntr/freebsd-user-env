@@ -7,3 +7,4 @@ x11/xmodmap
 x11/xbindkeys
 x11/xautolock
 x11-wm/i3
+x11/setxkbmap
