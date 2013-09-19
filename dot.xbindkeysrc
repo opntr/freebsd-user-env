@@ -100,6 +100,14 @@
 "import -verbose -window root /tmp/screenshot-`date +%Y%m%d%H%M%S`.png && echo screenshot created | osd_cat -p top -o 55 -l 20 -c yellow -d 2 -s 1 "
 	Print
 
+# set keyboard layout to us
+"setxkbmap -model pc104 -layout us"
+	Control+Alt + k
+
+# set keyboard layout to hu
+"setxkbmap -model pc104 -layout hu -variant qwerty"
+	Control+Alt+Shift + k
+
 ##################################
 # End of xbindkeys configuration #
 ##################################
