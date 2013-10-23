@@ -549,9 +549,13 @@ endif
 			underscore useragent= validate verbose version vikeys \
 			width=)/' 'c/(http|ftp)/$URLS/'
 
-
+if ( `sysctl -n kern.osreldate` >= 1000000 ) then
+    complete make	'p@1@`make -ndg1 | & sed -n -E "/=/d; s/(^# )([_a-zA-Z\-]*),(.*)/\2/gp;"`@' \
+			'n@-V@`make -ndv | & grep Global: | sed -E -e "s/^Global://" -e "s/ .*//" -e "/^[[:lower:]]/d" | sort | uniq`@'
+else
     complete make	'p@1@`make -pn | sed -n -E "/^[#_.\/[:blank:]]+/d; /=/d; s/[[:blank:]]*:.*//gp;"`@' \
 			'n@-V@`make -ndv | & grep Global: | sed -E -e "s/^Global://" -e "s/ .*//" -e "/^[[:lower:]]/d" | sort | uniq`@'
+endif
 
     complete gmake	'c/{--directory=,--include-dir=}/d/' \
 			'c/{--assume-new,--assume-old,--makefile,--new-file,--what-if,--file}/f/' \
