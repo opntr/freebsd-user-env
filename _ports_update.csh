@@ -3,7 +3,7 @@
 # git://git.freebsd.org/freebsd-ports.git
 
 set P_DIR="freebsd-ports"
-set P_SOURCE="/usr/data/source/git/$P_DIR.git"
+set P_SOURCE="/usr/data/source/git/$P_DIR.git.http"
 
 cd $P_SOURCE
 
