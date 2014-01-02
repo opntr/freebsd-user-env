@@ -11,6 +11,7 @@ install:
 	install -m 0440 dot.screenrc		$(HOME)/.screenrc
 	install -m 0550 _src_update.csh		$(HOME)/bin/_src_update.csh
 	install -m 0550 _ports_update.csh	$(HOME)/bin/_ports_update.csh
+	install -m 0550 _kernel_uname_diff.csh	$(HOME)/bin/_kernel_uname_diff.csh
 
 userinstall:
 	install -d -m 0750 $(HOME)/.i3

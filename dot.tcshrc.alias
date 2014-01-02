@@ -28,8 +28,7 @@ if ($LOGNAME == "root") then
 
 #	alias ports_update 'portsnap fetch update | less'
 	alias ports_update '_ports_update.csh |& less'
-	alias kernel_uname_diff '(cd /usr/src;'	\
-		'git log `uname -a | cut -d '+' -f 2 | cut -d ':' -f 1`..)'
+	alias kernel_uname_diff '_kernel_uname_diff.csh'
 	alias build_world '(cd /usr/src; make -j$__freebsd_mk_jobs buildworld '\
 		'kernel) |& tee ~/cc-log-`date "+%Y%m%d%H%M%S"`'
 	alias build_kernel '(cd /usr/src; make -j$__freebsd_mk_jobs kernel)' \
