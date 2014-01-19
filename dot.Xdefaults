@@ -3,3 +3,5 @@ xterm*Foreground:               gray
 xterm*cursorColor:              gray
 xterm*pointerColor:             gray
 xterm*visualBell:		true
+xlock*Background:		black
+xlock*Foreground:               gray
