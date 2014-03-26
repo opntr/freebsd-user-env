@@ -19,6 +19,7 @@ alias top 	'top -Pa'
 alias vlock 	'clear && lock -p -n'
 alias lsof	'fstat'
 alias pstree	'ps -d'
+alias dig	'drill'
 
 if ($LOGNAME == "root") then
 	alias src_update '_src_update.csh' \
