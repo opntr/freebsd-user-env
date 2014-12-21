@@ -21,6 +21,12 @@ alias lsof	'fstat'
 alias pstree	'ps -d'
 alias dig	'drill'
 
+if ( ! -e /usr/local/bin/screen) then
+	if ( -e /usr/local/bin/tmux) then
+		alias screen 'tmux'
+	endif
+endif
+
 if ($LOGNAME == "root") then
 	alias src_update '_src_update.csh' \
 			'|& tee -a /tmp/git_log_all_warns' \
