@@ -10,6 +10,7 @@ install:
 	install -m 0440 dot.vimrc.clang_complete		$(HOME)/.vimrc
 	install -m 0440 dot.screenrc		$(HOME)/.screenrc
 	install -m 0440 dot.tmux.conf		$(HOME)/.tmux.conf
+	install -m 0440 dot.gitconfig		$(HOME)/.gitconfig
 	install -m 0550 _src_update.csh		$(HOME)/bin/_src_update.csh
 	install -m 0550 _ports_update.csh	$(HOME)/bin/_ports_update.csh
 	install -m 0550 _kernel_uname_diff.csh	$(HOME)/bin/_kernel_uname_diff.csh
