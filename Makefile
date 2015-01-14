@@ -17,9 +17,11 @@ install:
 
 userinstall:
 	install -d -m 0750 $(HOME)/.i3
+	install -d -m 0750 $(HOME)/.config/clipit
 	install -m 0550 dot.xsession		$(HOME)/.xsession
 	install -m 0440 dot.Xdefaults		$(HOME)/.Xdefaults
 	install -m 0440 dot.xbindkeysrc		$(HOME)/.xbindkeysrc
 	install -m 0440 dot.i3status.conf	$(HOME)/.i3status.conf
 	install -m 0440 dot.i3/config		$(HOME)/.i3/config
+	install -m 0400 dot.config-clipit-clipitrc 	$(HOME)/.config/clipit/clipitrc
 
