@@ -1,0 +1,229 @@
+Section "ServerLayout"
+	Identifier     "X.org Configured"
+	Screen      0  "Screen0" 0 0
+	Screen      1  "Screen1" RightOf "Screen0"
+	Screen      2  "Screen2" RightOf "Screen1"
+	InputDevice    "Mouse0" "CorePointer"
+	#InputDevice    "Touchpad0" "CorePointer"
+	InputDevice    "Keyboard0" "CoreKeyboard"
+	Option		"AutoAddDevices" "false"
+EndSection
+
+Section "Files"
+	ModulePath   "/usr/local/lib/xorg/modules"
+	FontPath     "/usr/local/lib/X11/fonts/misc/"
+	FontPath     "/usr/local/lib/X11/fonts/TTF/"
+	FontPath     "/usr/local/lib/X11/fonts/OTF/"
+	FontPath     "/usr/local/lib/X11/fonts/Type1/"
+	FontPath     "/usr/local/lib/X11/fonts/100dpi/"
+	FontPath     "/usr/local/lib/X11/fonts/75dpi/"
+EndSection
+
+Section "Module"
+	Load  "dbe"
+	Load  "dri"
+	Load  "dri2"
+	Load  "extmod"
+	Load  "record"
+	Load  "glx"
+	Load  "synaptics"
+EndSection
+
+Section "InputDevice"
+	Identifier  "Keyboard0"
+	Driver      "kbd"
+	Option		"XkbRules"	"xorg"
+	Option		"XkbModel"	"105"
+	Option		"XkbLayout"	"us"
+	Option		"XkbOptions"	"ctrl:swapcaps"
+EndSection
+
+Section "InputDevice"
+	Identifier  "Mouse0"
+	Driver      "mouse"
+	Option	    "Protocol" "auto"
+	Option	    "Device" "/dev/sysmouse"
+	Option	    "ZAxisMapping" "4 5 6 7"
+EndSection
+
+Section "InputDevice"
+	Identifier  "Touchpad0"
+	Driver      "synaptics"
+        Option "UseShm" "true"
+        Option "SHMConfig" "on"
+        Option "Protocol" "psm"
+        Option "Device" "/dev/psm0"
+        Option "SendCoreEvents" "true"
+        Option "ZAxisMapping" "4 5 6 7"
+EndSection
+
+Section "Monitor"
+	Identifier   "Monitor0"
+	VendorName   "Monitor Vendor"
+	ModelName    "Monitor Model"
+EndSection
+
+Section "Monitor"
+	Identifier   "Monitor1"
+	VendorName   "Monitor Vendor"
+	ModelName    "Monitor Model"
+EndSection
+
+Section "Monitor"
+	Identifier   "Monitor2"
+	VendorName   "Monitor Vendor"
+	ModelName    "Monitor Model"
+EndSection
+
+Section "Device"
+        ### Available Driver options are:-
+        ### Values: <i>: integer, <f>: float, <bool>: "True"/"False",
+        ### <string>: "String", <freq>: "<f> Hz/kHz/MHz",
+        ### <percent>: "<f>%"
+        ### [arg]: arg optional
+        #Option     "NoAccel"            	# [<bool>]
+        #Option     "AccelMethod"        	# <str>
+        #Option     "Backlight"          	# <str>
+        #Option     "DRI"                	# <str>
+        #Option     "ColorKey"           	# <i>
+        #Option     "VideoKey"           	# <i>
+        #Option     "Tiling"             	# [<bool>]
+        #Option     "LinearFramebuffer"  	# [<bool>]
+        #Option     "SwapbuffersWait"    	# [<bool>]
+        #Option     "TripleBuffer"       	# [<bool>]
+        #Option     "XvPreferOverlay"    	# [<bool>]
+        #Option     "HotPlug"            	# [<bool>]
+        #Option     "ReprobeOutputs"     	# [<bool>]
+        #Option     "XvMC"               	# [<bool>]
+        #Option     "ZaphodHeads"        	# <str>
+        #Option     "TearFree"           	# [<bool>]
+        #Option     "PerCrtcPixmaps"     	# [<bool>]
+        #Option     "FallbackDebug"      	# [<bool>]
+        #Option     "DebugFlushBatches"  	# [<bool>]
+        #Option     "DebugFlushCaches"   	# [<bool>]
+        #Option     "DebugWait"          	# [<bool>]
+        #Option     "BufferCache"        	# [<bool>]
+	Identifier  "Card0"
+	Driver      "intel"
+	BusID       "PCI:0:2:0"
+EndSection
+
+Section "Device"
+        ### Available Driver options are:-
+        ### Values: <i>: integer, <f>: float, <bool>: "True"/"False",
+        ### <string>: "String", <freq>: "<f> Hz/kHz/MHz",
+        ### <percent>: "<f>%"
+        ### [arg]: arg optional
+        #Option     "ShadowFB"           	# [<bool>]
+        #Option     "Rotate"             	# <str>
+        #Option     "fbdev"              	# <str>
+        #Option     "debug"              	# [<bool>]
+	Identifier  "Card1"
+	Driver      "fbdev"
+	BusID       "PCI:0:2:0"
+EndSection
+
+Section "Device"
+        ### Available Driver options are:-
+        ### Values: <i>: integer, <f>: float, <bool>: "True"/"False",
+        ### <string>: "String", <freq>: "<f> Hz/kHz/MHz",
+        ### <percent>: "<f>%"
+        ### [arg]: arg optional
+        #Option     "ShadowFB"           	# [<bool>]
+        #Option     "DefaultRefresh"     	# [<bool>]
+        #Option     "ModeSetClearScreen" 	# [<bool>]
+	Identifier  "Card2"
+	Driver      "vesa"
+	BusID       "PCI:0:2:0"
+EndSection
+
+Section "Screen"
+	Identifier "Screen0"
+	Device     "Card0"
+	Monitor    "Monitor0"
+	SubSection "Display"
+		Viewport   0 0
+		Depth     1
+	EndSubSection
+	SubSection "Display"
+		Viewport   0 0
+		Depth     4
+	EndSubSection
+	SubSection "Display"
+		Viewport   0 0
+		Depth     8
+	EndSubSection
+	SubSection "Display"
+		Viewport   0 0
+		Depth     15
+	EndSubSection
+	SubSection "Display"
+		Viewport   0 0
+		Depth     16
+	EndSubSection
+	SubSection "Display"
+		Viewport   0 0
+		Depth     24
+	EndSubSection
+EndSection
+
+Section "Screen"
+	Identifier "Screen1"
+	Device     "Card1"
+	Monitor    "Monitor1"
+	SubSection "Display"
+		Viewport   0 0
+		Depth     1
+	EndSubSection
+	SubSection "Display"
+		Viewport   0 0
+		Depth     4
+	EndSubSection
+	SubSection "Display"
+		Viewport   0 0
+		Depth     8
+	EndSubSection
+	SubSection "Display"
+		Viewport   0 0
+		Depth     15
+	EndSubSection
+	SubSection "Display"
+		Viewport   0 0
+		Depth     16
+	EndSubSection
+	SubSection "Display"
+		Viewport   0 0
+		Depth     24
+	EndSubSection
+EndSection
+
+Section "Screen"
+	Identifier "Screen2"
+	Device     "Card2"
+	Monitor    "Monitor2"
+	SubSection "Display"
+		Viewport   0 0
+		Depth     1
+	EndSubSection
+	SubSection "Display"
+		Viewport   0 0
+		Depth     4
+	EndSubSection
+	SubSection "Display"
+		Viewport   0 0
+		Depth     8
+	EndSubSection
+	SubSection "Display"
+		Viewport   0 0
+		Depth     15
+	EndSubSection
+	SubSection "Display"
+		Viewport   0 0
+		Depth     16
+	EndSubSection
+	SubSection "Display"
+		Viewport   0 0
+		Depth     24
+	EndSubSection
+EndSection
+
