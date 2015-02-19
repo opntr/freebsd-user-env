@@ -9,9 +9,9 @@ set -f path = ( $path /usr/bin )
 set -l path = ( $path /usr/local/bin )
 
 set -l path = ( $path /usr/local/ssl/bin )
-set -l path = ( $path /usr/local/samba/bin )
-set -l path = ( $path /usr/local/java/bin )
-set -l path = ( $path /usr/games )
+#set -l path = ( $path /usr/local/samba/bin )
+#set -l path = ( $path /usr/local/java/bin )
+#set -l path = ( $path /usr/games )
 
 umask 22
 
