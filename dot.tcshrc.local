@@ -5,10 +5,8 @@ set	histfile = $HOME/.tcsh_history
 
 setenv  EDITOR		vim
 setenv  BLOCKSIZE	K
-# do not clear screen after exit under tmux
 
 setenv  PAGER		less
-setenv	LESS		-X
 setenv	LOCKPRG		/usr/bin/lock
 
 bindkey "^W"		backward-delete-word
