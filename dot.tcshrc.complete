@@ -30,10 +30,13 @@ if ($?_complete) then
 	set f=`cat $HOME/.ssh/known_hosts | cut -f 1 -d \ ` >& /dev/null
 	set hosts=($hosts $f)
     endif
+    if ( -r $HOME/.ssh/config ) then
+	set f=`cat $HOME/.ssh/config | awk '/Host/{print $2}'` >& /dev/null
+	set hosts=($hosts $f)
+    endif
     unset f
     if ( ! $?hosts ) then
-	set hosts=(peonia peonia.teteny.elte.hu oliverp\
-		   oliverp.teteny.bme.hu)
+	set hosts=(localhost)
     endif
 
     complete ywho  	n/*/\$hosts/	# argument from list in $hosts
