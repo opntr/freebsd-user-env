@@ -1,7 +1,7 @@
 set	history=2048
 set	histdup
 set	savehist=2048
-set	histfile = $HOME/.tcsh_history
+set	histfile = ${HOME}/.tcsh_history
 
 setenv  EDITOR		vim
 setenv  BLOCKSIZE	K
@@ -15,6 +15,6 @@ bindkey "^R"		i-search-back
 alias	mount_msdosfs	'mount -t msdosfs -o -u=op,-g=op,noexec,nosuid,-M=0755,-m=0644,longnames'
 alias	mount_ntfs	'mount -t ntfs -r -o -u=op,-g=op,noexec,nosuid,-m=0444'
 
-if ( -f $HOME/.git-completion.tcsh ) then
-	source .git-completion.tcsh
+if ( -f ${HOME}/.git-completion.tcsh ) then
+	source ${HOME}/.git-completion.tcsh
 endif
