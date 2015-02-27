@@ -1,7 +1,7 @@
 [push]
 	default = simple
 [commit]
-	template = /home/home/.git/hbsd-template
+	template = ~/.git/hbsd-template
 [user]
 	name = Oliver Pinter
 	email = oliver.pinter@hardenedbsd.org
