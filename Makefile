@@ -1,5 +1,6 @@
 install:
 	install -d -m 0750 $(HOME)/bin
+	install -d -m 0750 $(HOME)/.git
 	install -m 0440 dot.tcshrc 		$(HOME)/.tcshrc
 	install -m 0440 dot.tcshrc.alias	$(HOME)/.tcshrc.alias
 	install -m 0440 dot.tcshrc.bindkey	$(HOME)/.tcshrc.bindkey
@@ -11,6 +12,7 @@ install:
 	install -m 0440 dot.screenrc		$(HOME)/.screenrc
 	install -m 0440 dot.tmux.conf		$(HOME)/.tmux.conf
 	install -m 0440 dot.gitconfig		$(HOME)/.gitconfig
+	install -m 0440 dot.git/hbsd-template	$(HOME)/.git/hbsd-template
 	install -m 0550 _src_update.csh		$(HOME)/bin/_src_update.csh
 	install -m 0550 _ports_update.csh	$(HOME)/bin/_ports_update.csh
 	install -m 0550 _kernel_uname_diff.csh	$(HOME)/bin/_kernel_uname_diff.csh
@@ -24,7 +26,3 @@ userinstall:
 	install -m 0440 dot.i3status.conf	$(HOME)/.i3status.conf
 	install -m 0440 dot.i3/config		$(HOME)/.i3/config
 	install -m 0400 dot.config-clipit-clipitrc 	$(HOME)/.config/clipit/clipitrc
-
-devinstall:
-	install -d -m 0750 $(HOME)/.git
-	install -m 0440 dot.gitconfig		$(HOME)/.gitconfig
