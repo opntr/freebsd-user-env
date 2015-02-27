@@ -1,5 +1,7 @@
-[user]
-	email = oliver.pinter@hardenedbsd.org
-	name = Oliver Pinter
 [push]
 	default = simple
+[commit]
+	template = /home/home/.git/hbsd-template
+[user]
+	name = Oliver Pinter
+	email = oliver.pinter@hardenedbsd.org

@@ -25,3 +25,6 @@ userinstall:
 	install -m 0440 dot.i3/config		$(HOME)/.i3/config
 	install -m 0400 dot.config-clipit-clipitrc 	$(HOME)/.config/clipit/clipitrc
 
+devinstall:
+	install -d -m 0750 $(HOME)/.git
+	install -m 0440 dot.gitconfig		$(HOME)/.gitconfig
