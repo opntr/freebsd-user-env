@@ -26,3 +26,7 @@ userinstall:
 	install -m 0440 dot.i3status.conf	$(HOME)/.i3status.conf
 	install -m 0440 dot.i3/config		$(HOME)/.i3/config
 	install -m 0400 dot.config-clipit-clipitrc 	$(HOME)/.config/clipit/clipitrc
+
+contribinstall:
+	install -m 0550 contrib/dot.git-completion.bash		$(HOME)/.git-completion.bash
+	install -m 0550 contrib/dot.git-completion.tcsh		$(HOME)/.git-completion.tcsh
