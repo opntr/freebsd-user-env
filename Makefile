@@ -1,3 +1,5 @@
+UID!= id -u
+
 install:
 	install -d -m 0750 $(HOME)/bin
 	install -d -m 0750 $(HOME)/.git
@@ -10,12 +12,21 @@ install:
 	install -m 0440 dot.tcshrc.set		$(HOME)/.tcshrc.set
 	install -m 0440 dot.vimrc.clang_complete		$(HOME)/.vimrc
 	install -m 0440 dot.screenrc		$(HOME)/.screenrc
+.if ${UID} == 0
 	install -m 0440 dot.tmux.conf		$(HOME)/.tmux.conf
+.else
+	install -m 0440 dot.tmux.conf.user	$(HOME)/.tmux.conf
+.endif
 	install -m 0440 dot.gitconfig		$(HOME)/.gitconfig
 	install -m 0440 dot.git/hbsd-template	$(HOME)/.git/hbsd-template
-	install -m 0550 _src_update.csh		$(HOME)/bin/_src_update.csh
-	install -m 0550 _ports_update.csh	$(HOME)/bin/_ports_update.csh
-	install -m 0550 _kernel_uname_diff.csh	$(HOME)/bin/_kernel_uname_diff.csh
+.if ${UID} == 0
+	install -m 0550 bin/_hbsd_build_kernel.csh	$(HOME)/bin/_hbsd_build_kernel.csh
+	install -m 0550 bin/_hbsd_build_world.csh	$(HOME)/bin/_hbsd_build_world.csh
+	install -m 0550 bin/_hbsd_install_world.csh	$(HOME)/bin/_hbsd_install_world.csh
+	install -m 0550 bin/_src_update.csh	$(HOME)/bin/_src_update.csh
+	install -m 0550 bin/_ports_update.csh	$(HOME)/bin/_ports_update.csh
+	install -m 0550 bin/_kernel_uname_diff.csh	$(HOME)/bin/_kernel_uname_diff.csh
+.endif
 
 userinstall:
 	install -d -m 0750 $(HOME)/.i3
