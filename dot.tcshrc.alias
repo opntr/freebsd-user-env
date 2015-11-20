@@ -1,3 +1,5 @@
+#!/bin/csh
+
 alias ls	'ls -A'
 alias ll	'ls -l'
 
@@ -30,15 +32,12 @@ endif
 if ($LOGNAME == "root") then
 	alias src_update '_src_update.csh' \
 			'|& tee -a /tmp/git_log_all_warns' \
-			'| grep --line-buffered -E -v "^Couldn.t find revmap for svn://svn\.freebsd\.org/base/stable/$__freebsd_version"' \
 			'| less'
-
-#	alias ports_update 'portsnap fetch update | less'
 	alias ports_update '_ports_update.csh |& less'
 	alias kernel_uname_diff '_kernel_uname_diff.csh'
 	alias build_world '(cd /usr/src; make -j$__freebsd_mk_jobs buildworld '\
 		'kernel) |& tee ~/cc-log-`date "+%Y%m%d%H%M%S"`'
 	alias build_kernel '(cd /usr/src; make -j$__freebsd_mk_jobs kernel)' \
 		'|& tee ~/cc-log-`date "+%Y%m%d%H%M%S"`'
-	alias portupgrade 'pkg_glob -a > /root/upgrade/pkg-list-`date "+%Y%m%d%H%M%S"` && /usr/local/sbin/portupgrade -L /root/upgrade/`date "+%Y%m%d%H%M%S"`-portupgrade-%s::%s.log -u'
+	alias portupgrade 'pkg info -q > /root/upgrade/pkg-list-`date "+%Y%m%d%H%M%S"` && /usr/local/sbin/portupgrade -L /root/upgrade/`date "+%Y%m%d%H%M%S"`-portupgrade-%s::%s.log -u'
 endif
