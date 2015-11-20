@@ -19,7 +19,9 @@ set fignore=(.o)
 set echo_style=both
 
 @ __freebsd_version = `sysctl -n kern.osreldate` / 100000
+setenv __freebsd_version ${__freebsd_version}
 @ __freebsd_mk_jobs = `sysctl -n kern.smp.cpus` + 1
+setenv __freebsd_mk_jobs ${__freebsd_mk_jobs}
 
 setenv SHORT_HOST `echo $HOST | cut -f 1 -d. | tr 'a-z' 'A-Z'`
 switch ( $TERM )
