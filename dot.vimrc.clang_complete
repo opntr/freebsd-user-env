@@ -37,12 +37,12 @@ inoremap <Nul> <C-x><C-o>
 
 map <F1> ^iSigned-off-by: Oliver Pinter <oliver.pinter@hardenedbsd.org><CR><ESC>^
 map! <F1> Signed-off-by: Oliver Pinter <oliver.pinter@hardenedbsd.org><CR>
-map <F2> ^iMFC-to: <CR><ESC>^
-map! <F2> MFC-to: <CR>
-map <F3> ^igithub-issue: <CR><ESC>^
-map! <F3> github-issue: <CR>
-map <F4> ^iX-MFC-with: <CR><ESC>^
-map! <F4> X-MFC-with: <CR>
+map <F2> ^iMFC-to: <ESC>^
+map! <F2> MFC-to: 
+map <F3> ^igithub-issue: <ESC>^
+map! <F3> github-issue: 
+map <F4> ^iX-MFC-with: <ESC>^
+map! <F4> X-MFC-with: 
 map <F5> ^iSigned-off-by: Oliver Pinter <oliver.pntr@gmail.com><CR><ESC>^
 map! <F5> Signed-off-by: Oliver Pinter <oliver.pntr@gmail.com><CR>
 
