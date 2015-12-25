@@ -14,9 +14,9 @@ endif
 cd ${K_SOURCE}
 
 echo "---------------------------------- $K_VERSION -----------------------------------"
-set old_revision="`git rev-list hardened/$_OSREL -1`-stable/master"
+set old_revision="`git rev-list hardened/${_OSREL}-stable/master -1`"
 git fetch
-set new_revision="`git rev-list hardened/$_OSREL -1`-stable/master"
+set new_revision="`git rev-list hardened/${_OSREL}-stable/master -1`"
 
 if ( "${old_revision}" != "${new_revision}" ) then
 	echo "--------------------------------------------------------------------------------"
