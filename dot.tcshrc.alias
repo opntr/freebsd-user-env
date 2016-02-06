@@ -31,7 +31,7 @@ endif
 
 if ($LOGNAME == "root") then
 	alias src_update '_src_update.csh |& tee -a /tmp/git_log_all_warns | less'
-	alias ports_update '_ports_update.csh |& less'
+	alias ports_update '_ports_update.csh'
 	alias kernel_uname_diff '_kernel_uname_diff.csh'
 	alias install_world '_hbsd_install_world.csh'
 	alias build_world '_hbsd_build_world.csh'
