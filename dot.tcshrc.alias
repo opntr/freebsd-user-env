@@ -25,6 +25,7 @@ alias dig	'drill'
 
 alias gcpx	'git cherry-pick -x'
 alias gcpxs	'git cherry-pick -x -s'
+alias gcpxse	'git cherry-pick -x -s -e'
 
 if ( ! -e /usr/local/bin/screen) then
 	if ( -e /usr/local/bin/tmux) then
