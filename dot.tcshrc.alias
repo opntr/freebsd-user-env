@@ -29,6 +29,8 @@ alias gcpxse	'git cherry-pick -x -s -e'
 alias gcpxser	'git cherry-pick -x -s -e \!:1 && git commit --amend --reuse-message=HEAD --reset-author'
 alias gcrsa	'git commit --amend --reuse-message=HEAD --reset-author'
 
+alias pmctop	'pmcstat -T -S instructions'
+
 if ( ! -e /usr/local/bin/screen) then
 	if ( -e /usr/local/bin/tmux) then
 		alias screen 'tmux'
