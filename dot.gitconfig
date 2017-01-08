@@ -6,5 +6,6 @@
 	name = Oliver Pinter
 	email = oliver.pinter@hardenedbsd.org
 [alias]
-	tree = log --oneline --decorate --all --graph
 	log-with-tree = log --decorate --all --graph
+	logd = log --decorate
+	tree = log --oneline --decorate --all --graph
