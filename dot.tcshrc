@@ -15,10 +15,15 @@ set -l path = ( $path /usr/local/ssl/bin )
 
 umask 22
 
+# Do not source any of the customization in non-interactive mode
 if ($?USER == 0 || $?prompt == 0) exit
+
 source $HOME/.tcshrc.set
 source $HOME/.tcshrc.alias
-#source $HOME/.tcshrc.bindkey
+source $HOME/.tcshrc.bindkey
 source $HOME/.tcshrc.complete
 source $HOME/.tcshrc.local
 
+if ( -f ${HOME}/.git-completion.tcsh ) then
+	source ${HOME}/.git-completion.tcsh
+endif

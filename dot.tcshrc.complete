@@ -986,11 +986,11 @@ setenv MANPATH `manpath`
 			N/{-C,--directory}/'`\ls $:-1`'/ \
 			n/-[0-7]/"(l m h)"/
 
-    complete  mount	c/-/"(a r t v)"/ n/-t/"(ufs nfs)"/ \
+    complete  mount	c/-/"(a r t v)"/ n/-t/"(ufs msdosfs nfs)"/ \
 	    		n@*@'`grep -v "^#" /etc/fstab | tr -s " " "	" | cut -f 1,2; \
-				ls /dev/ad*; \
-				ls /dev/{gpt,ufs,ntfs,msdosfs,diskid}/*`'@
-    complete umount	c/-/"(a h t v)"/ n/-t/"(ufs nfs)"/ \
+				ls /dev/{ada,da}* \
+				   /dev/{gpt,ufs,ntfs,msdosfs,diskid}/*`'@
+    complete umount	c/-/"(a h t v)"/ n/-t/"(ufs msdosfs nfs)"/ \
     			n/-h/'`df | cut -s -d ":" -f 1 | sort -u`'/ \
     			n/*/'`mount | cut -d " " -f 3`'/
 

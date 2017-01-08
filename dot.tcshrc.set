@@ -2,9 +2,10 @@ set prompt = '%B%n%b@%U%m%u %c%# '
 set prompt2="%R? "
 set prompt3="CORRECT> %B%R%b (y|n|e)? "
 set nobeep
-set history=2048
+set history=8192
 set histdup
-set savehist
+set savehist=8192
+set histfile = ${HOME}/.tcsh_history
 set watch=(0 any any)
 set who="%n has %a %l from %M."
 set inputmode=insert
@@ -51,3 +52,8 @@ unset tperiod
 unalias periodic
 
 set URLS=()
+
+setenv EDITOR		vim
+setenv BLOCKSIZE	K
+setenv PAGER		less
+setenv LOCKPRG		/usr/bin/lock
