@@ -1,23 +1,23 @@
-set prompt = '%B%n%b@%U%m%u %c%# '
-set prompt2="%R? "
-set prompt3="CORRECT> %B%R%b (y|n|e)? "
-set nobeep
-set history=8192
-set histdup
-set savehist=8192
+set autoexpand
+set autolist
+set complete
+set echo_style = both
+set fignore = (.o)
+set histdup = prev
 set histfile = ${HOME}/.tcsh_history
+set history = 8192
+set savehist = (8192 merge lock)
+set inputmode = insert
+set listjobs
+set nobeep
+set prompt2 = "%R? "
+set prompt3 = "CORRECT> %B%R%b (y|n|e)? "
+set prompt = '%B%n%b@%U%m%u %c%# '
+set rmstar
+set symlinks = chase
 set watch=(0 any any)
 set who="%n has %a %l from %M."
-set inputmode=insert
-set autolist
-set autoexpand
-set complete#=enhance
 unset autologout
-set symlinks=chase
-set listjobs
-set rmstar
-set fignore=(.o)
-set echo_style=both
 
 @ __freebsd_version = `sysctl -n kern.osreldate` / 100000
 setenv __freebsd_version ${__freebsd_version}
@@ -26,18 +26,18 @@ setenv __freebsd_mk_jobs ${__freebsd_mk_jobs}
 
 setenv SHORT_HOST `echo $HOST | cut -f 1 -d. | tr 'a-z' 'A-Z'`
 switch ( $TERM )
-      case "dtterm*":         # dtterm
-      case "xterm*":          # xterm
+      case "dtterm*":	# dtterm
+      case "xterm*":	# xterm
               alias seticon 'echo -n "\033]1;\!*\007"'
               alias sethead 'echo -n "\033]2;\!*\007"'
               alias cwdcmd  'sethead "${SHORT_HOST} - ${PWD}"'
               breaksw;
-      case "sun*":            # SunView cmdtool/shelltool
+      case "sun*":	# SunView cmdtool/shelltool
               alias seticon 'echo -n "\033]L\!*\033\\"'
               alias sethead 'echo -n "\033]l\!*\033\\"'
               alias cwdcmd  'sethead "${SHORT_HOST} - ${PWD}"'
               breaksw;
-      case "vt[24]20*":       # TNVT and SecureCRT (Windows clients)
+      case "vt[24]20*":	# TNVT and SecureCRT (Windows clients)
               alias seticon 'echo -n ""'
               alias sethead 'echo -n "\033]0;\!*\007\033\\"'
               alias cwdcmd  'sethead "${SHORT_HOST} - ${PWD}"'
@@ -51,7 +51,7 @@ endsw
 unset tperiod
 unalias periodic
 
-set URLS=()
+set URLS = ()
 
 setenv EDITOR		vim
 setenv BLOCKSIZE	K
