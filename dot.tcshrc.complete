@@ -2,82 +2,77 @@ onintr -
 if (! $?prompt) goto end
 
 if ($?tcsh) then
-    if ($tcsh != 1) then
-   	set rev=$tcsh:r
-	set rel=$rev:e
-	set pat=$tcsh:e
-	set rev=$rev:r
-    endif
-    if ($rev > 5 && $rel > 1) then
-	set _complete=1
-    endif
-    unset rev rel pat
+	if ($tcsh != 1) then
+		set rev=$tcsh:r
+		set rel=$rev:e
+		set pat=$tcsh:e
+		set rev=$rev:r
+	endif
+	if ($rev > 5 && $rel > 1) then
+		set _complete=1
+	endif
+	unset rev rel pat
 endif
 
 if ($?_complete) then
-    set noglob
-    if ( ! $?hosts ) set hosts
-    foreach f ($HOME/.hosts $HOME/.tcshrc.hosts /usr/local/etc/csh.hosts $HOME/.rhosts /etc/hosts.equiv)
-        if ( -r $f ) then
-	    set hosts = ($hosts `grep -v "+" $f | grep -E -v "^#" | tr -s " " "	" | cut -f 1`)
+	set noglob
+	if ( ! $?hosts ) set hosts
+	foreach f ($HOME/.hosts $HOME/.tcshrc.hosts /usr/local/etc/csh.hosts $HOME/.rhosts /etc/hosts.equiv)
+		if ( -r $f ) then
+			set hosts = ($hosts `grep -v "+" $f | grep -E -v "^#" | tr -s " " "	" | cut -f 1`)
+		endif
+	end
+	if ( -r $HOME/.netrc ) then
+		set f=`awk '/machine/ { print $2 }' < $HOME/.netrc` >& /dev/null
+		set hosts=($hosts $f)
 	endif
-    end
-    if ( -r $HOME/.netrc ) then
-	set f=`awk '/machine/ { print $2 }' < $HOME/.netrc` >& /dev/null
-	set hosts=($hosts $f)
-    endif
-    if ( -r $HOME/.ssh/known_hosts ) then
-	set f=`cat $HOME/.ssh/known_hosts | cut -f 1 -d \ ` >& /dev/null
-	set hosts=($hosts $f)
-    endif
-    if ( -r $HOME/.ssh/config ) then
-	set f=`cat $HOME/.ssh/config | awk '/Host/{print $2}'` >& /dev/null
-	set hosts=($hosts $f)
-    endif
-    unset f
-    if ( ! $?hosts ) then
-	set hosts=(localhost)
-    endif
+	if ( -r $HOME/.ssh/known_hosts ) then
+		set f=`cat $HOME/.ssh/known_hosts | cut -f 1 -d \ ` >& /dev/null
+		set hosts=($hosts $f)
+	endif
+	if ( -r $HOME/.ssh/config ) then
+		set f=`cat $HOME/.ssh/config | awk '/Host/{print $2}'` >& /dev/null
+		set hosts=($hosts $f)
+	endif
+	unset f
+	if ( ! $?hosts ) then
+		set hosts=(localhost)
+	endif
 
-    complete ywho  	n/*/\$hosts/	# argument from list in $hosts
-    complete rsh	p/1/\$hosts/ c/-/"(l n)"/   n/-l/u/ N/-l/c/ n/-/c/ p/2/c/ p/*/f/
-    complete ssh	p/1/\$hosts/ c/-/"(l n)"/   n/-l/u/ N/-l/c/ n/-/c/ p/2/c/ p/*/f/
-    complete xrsh	p/1/\$hosts/ c/-/"(l 8 e)"/ n/-l/u/ N/-l/c/ n/-/c/ p/2/c/ p/*/f/
-    complete rlogin 	p/1/\$hosts/ c/-/"(l 8 e)"/ n/-l/u/
-    complete telnet 	p/1/\$hosts/ p/2/x:'<port>'/ n/*/n/
+	complete ywho	n/*/\$hosts/	# argument from list in $hosts
+	complete rsh	p/1/\$hosts/ c/-/"(l n)"/   n/-l/u/ N/-l/c/ n/-/c/ p/2/c/ p/*/f/
+	complete ssh	p/1/\$hosts/ c/-/"(l n)"/   n/-l/u/ N/-l/c/ n/-/c/ p/2/c/ p/*/f/
+	complete xrsh	p/1/\$hosts/ c/-/"(l 8 e)"/ n/-l/u/ N/-l/c/ n/-/c/ p/2/c/ p/*/f/
+	complete rlogin p/1/\$hosts/ c/-/"(l 8 e)"/ n/-l/u/
+	complete telnet p/1/\$hosts/ p/2/x:'<port>'/ n/*/n/
 
-    complete cd  	p/1/d/		# Directories only
-    complete chdir 	p/1/d/
-    complete pushd 	p/1/d/
-    complete popd 	p/1/d/
-    complete pu 	p/1/d/
-    complete po 	p/1/d/
-    complete complete 	p/1/X/		# Completions only
-    complete uncomplete	n/*/X/
-    complete exec 	p/1/c/		# Commands only
-    complete trace 	p/1/c/
-    complete strace 	p/1/c/
-    complete which	n/*/c/
-    complete where	n/*/c/
-    complete skill 	p/1/c/
-    complete dde	p/1/c/ 
-    complete adb	c/-I/d/ n/-/c/ N/-/"(core)"/ p/1/c/ p/2/"(core)"/
-    complete sdb	p/1/c/
-    complete dbx	c/-I/d/ n/-/c/ N/-/"(core)"/ p/1/c/ p/2/"(core)"/
-    complete xdb	p/1/c/
-    complete gdb	n/-d/d/ n/*/c/
-    complete ups	p/1/c/
-    complete set	'c/*=/f/' 'p/1/s/=' 'n/=/f/'
-    complete unset	n/*/s/
-    complete alias 	p/1/a/		# only aliases are valid
-    complete unalias	n/*/a/
-    complete xdvi 	n/*/f:*.dvi/	# Only files that match *.dvi
-    complete dvips 	n/*/f:*.dvi/
-if ($?traditional_complete) then
-    complete tex 	n/*/f:*.tex/	# Only files that match *.tex
-else
-    complete tex 	n/*/f:*.{tex,texi}/	# Files that match *.tex and *.texi
-endif
+	complete cd	p/1/d/		# Directories only
+	complete chdir	p/1/d/
+	complete pushd	p/1/d/
+	complete popd 	p/1/d/
+	complete pu 	p/1/d/
+	complete po 	p/1/d/
+	complete complete	p/1/X/		# Completions only
+	complete uncomplete	n/*/X/
+	complete exec	p/1/c/		# Commands only
+	complete trace	p/1/c/
+	complete truss	p/1/c/
+	complete which	n/*/c/
+	complete where	n/*/c/
+	complete pkill	p/1/c/
+	complete gdb	n/-d/d/ n/*/c/
+	complete set	'c/*=/f/' 'p/1/s/=' 'n/=/f/'
+	complete unset	n/*/s/
+	complete alias	p/1/a/		# only aliases are valid
+	complete unalias	n/*/a/
+	complete xdvi	n/*/f:*.dvi/	# Only files that match *.dvi
+	complete dvips	n/*/f:*.dvi/
+	if ($?traditional_complete) then
+		complete tex 	n/*/f:*.tex/	# Only files that match *.tex
+	else
+		complete tex 	n/*/f:*.{tex,texi}/	# Files that match *.tex and *.texi
+	endif
+
     complete latex 	n/*/f:*.{tex,ltx}/
     complete su		c/--/"(login fast preserve-environment command shell \
 			help version)"/	c/-/"(f l m p c s -)"/ \
@@ -85,9 +80,6 @@ endif
 			n@{-s,--shell}@'`cat /etc/shells`'@ n/*/u/
     complete cc 	c/-[IL]/d/ \
               c@-l@'`\ls -1 /usr/lib/lib*.a | sed s%^.\*/lib%%\;s%\\.a\$%%`'@ \
-			c/-/"(o l c g L I D U)"/ n/*/f:*.[coasi]/
-    complete acc 	c/-[IL]/d/ \
-       c@-l@'`\ls -1 /usr/lang/SC1.0/lib*.a | sed s%^.\*/lib%%\;s%\\.a\$%%`'@ \
 			c/-/"(o l c g L I D U)"/ n/*/f:*.[coasi]/
     complete gcc 	c/-[IL]/d/ \
 		 	c/-f/"(caller-saves cse-follow-jumps delayed-branch \
@@ -191,7 +183,7 @@ else
     endif
 endif
 
-    complete finger	c/*@/\$hosts/ n/*/u/@ 
+    complete finger	c/*@/\$hosts/ n/*/u/@
     complete ping	p/1/\$hosts/
     complete traceroute	p/1/\$hosts/
 
@@ -274,192 +266,7 @@ endif
 		'c/-d/(NODISPLAY NOPLATFONTS NOPAUSE)/' 'n/*/f/'
     complete perl	'n/-S/c/'
     complete printenv	'n/*/e/'
-    complete sccs	p/1/"(admin cdc check clean comb deledit delget \
-			delta diffs edit enter fix get help info \
-			print prs prt rmdel sccsdiff tell unedit \
-			unget val what)"/
     complete setenv	'p/1/e/' 'c/*:/f/'
-
-    if ( -f $HOME/.mh_profile && -x "`which folders`" ) then 
-
-    if ( ! $?FOLDERS ) setenv FOLDERS "`folders -fast -recurse`"
-    if ( ! $?MHA )     setenv MHA     "`ali | sed -e '/^ /d' -e 's/:.*//'`"
-
-    set folders = ( $FOLDERS )
-    set mha = ( $MHA )
-
-    complete ali \
-        'c/-/(alias nolist list nonormalize normalize nouser user help)/' \
-        'n,-alias,f,'
-
-    complete anno \
-        'c/-/(component noinplace inplace nodate date text help)/' \
-        'c,+,$folders,'  \
-        'n,*,`(mark | sed "s/:.*//";echo next cur prev first last)|tr " " "\12" | sort -u`,'
-
-    complete burst \
-        'c/-/(noinplace inplace noquiet quiet noverbose verbose help)/' \
-        'c,+,$folders,'  \
-        'n,*,`(mark | sed "s/:.*//";echo next cur prev first last)|tr " " "\12" | sort -u`,'
-
-    complete comp \
-        'c/-/(draftfolder draftmessage nodraftfolder editor noedit file form nouse use whatnowproc nowhatnowproc help)/' \
-        'c,+,$folders,'  \
-        'n,-whatnowproc,c,'  \
-        'n,-file,f,'\
-        'n,-form,f,'\
-        'n,*,`(mark | sed "s/:.*//";echo next cur prev first last)|tr " " "\12" | sort -u`,'
-
-    complete dist \
-        'c/-/(noannotate annotate draftfolder draftmessage nodraftfolder editor noedit form noinplace inplace whatnowproc nowhatnowproc help)/' \
-        'c,+,$folders,'  \
-        'n,-whatnowproc,c,'  \
-        'n,-form,f,'\
-        'n,*,`(mark | sed "s/:.*//";echo next cur prev first last)|tr " " "\12" | sort -u`,'
-
-    complete folder \
-        'c/-/(all nofast fast noheader header nopack pack noverbose verbose norecurse recurse nototal total noprint print nolist list push pop help)/' \
-        'c,+,$folders,'  \
-        'n,*,`(mark | sed "s/:.*//";echo next cur prev first last)|tr " " "\12" | sort -u`,'
-
-    complete folders \
-        'c/-/(all nofast fast noheader header nopack pack noverbose verbose norecurse recurse nototal total noprint print nolist list push pop help)/' \
-        'c,+,$folders,'  \
-        'n,*,`(mark | sed "s/:.*//";echo next cur prev first last)|tr " " "\12" | sort -u`,'
-
-    complete forw \
-        'c/-/(noannotate annotate draftfolder draftmessage nodraftfolder editor noedit filter form noformat format noinplace inplace digest issue volume whatnowproc nowhatnowproc help)/' \
-        'c,+,$folders,'  \
-        'n,-whatnowproc,c,'  \
-        'n,-filter,f,'\
-        'n,-form,f,'\
-        'n,*,`(mark | sed "s/:.*//";echo next cur prev first last)|tr " " "\12" | sort -u`,'
-
-    complete inc \
-        'c/-/(audit file noaudit nochangecur changecur file form format nosilent silent notruncate truncate width help)/' \
-        'c,+,$folders,'  \
-        'n,-audit,f,'\
-        'n,-form,f,'
-
-    complete mark \
-        'c/-/(add delete list sequence nopublic public nozero zero help)/' \
-        'c,+,$folders,'  \
-        'n,*,`(mark | sed "s/:.*//";echo next cur prev first last)|tr " " "\12" | sort -u`,'
-
-    complete mhmail \
-        'c/-/(body cc from subject help)/' \
-        'n,-cc,$mha,'  \
-        'n,-from,$mha,'  \
-        'n/*/$mha/'
-
-    complete mhpath \
-        'c/-/(help)/' \
-        'c,+,$folders,'  \
-        'n,*,`(mark | sed "s/:.*//";echo next cur prev first last)|tr " " "\12" | sort -u`,'
-
-    complete msgchk \
-        'c/-/(nodate date nonotify notify help)/' 
-
-    complete msh \
-        'c/-/(prompt noscan scan notopcur topcur help)/' 
-
-    complete next \
-        'c/-/(draft form moreproc nomoreproc length width showproc noshowproc header noheader help)/' \
-        'c,+,$folders,'  \
-        'n,-moreproc,c,'  \
-        'n,-showproc,c,'  \
-        'n,-form,f,'
-
-    complete packf \
-        'c/-/(file help)/' \
-        'c,+,$folders,'  \
-        'n,*,`(mark | sed "s/:.*//";echo next cur prev first last)|tr " " "\12" | sort -u`,'
-
-    complete pick \
-        'c/-/(and or not lbrace rbrace cc date from search subject to othercomponent after before datefield sequence nopublic public nozero zero nolist list help)/' \
-        'c,+,$folders,'  \
-        'n,*,`(mark | sed "s/:.*//";echo next cur prev first last)|tr " " "\12" | sort -u`,'
-
-    complete prev \
-        'c/-/(draft form moreproc nomoreproc length width showproc noshowproc header noheader help)/' \
-        'c,+,$folders,'  \
-        'n,-moreproc,c,'  \
-        'n,-showproc,c,'  \
-        'n,-form,f,'
-
-    complete prompter \
-        'c/-/(erase kill noprepend prepend norapid rapid nodoteof doteof help)/' 
-
-    complete refile \
-        'c/-/(draft nolink link nopreserve preserve src file help)/' \
-        'c,+,$folders,'  \
-        'n,-file,f,'\
-        'n,*,`(mark | sed "s/:.*//";echo next cur prev first last)|tr " " "\12" | sort -u`,'
-
-    complete rmf \
-        'c/-/(nointeractive interactive help)/' \
-        'c,+,$folders,'  
-
-    complete rmm \
-        'c/-/(help)/' \
-        'c,+,$folders,'  \
-        'n,*,`(mark | sed "s/:.*//";echo next cur prev first last)|tr " " "\12" | sort -u`,'
-
-    complete scan \
-        'c/-/(noclear clear form format noheader header width noreverse reverse file help)/' \
-        'c,+,$folders,'  \
-        'n,-form,f,'\
-        'n,-file,f,'\
-        'n,*,`(mark | sed "s/:.*//";echo next cur prev first last)|tr " " "\12" | sort -u`,'
-
-    complete send \
-        'c/-/(alias draft draftfolder draftmessage nodraftfolder filter nofilter noformat format noforward forward nomsgid msgid nopush push noverbose verbose nowatch watch width help)/' \
-        'n,-alias,f,'\
-        'n,-filter,f,'
-
-    complete show \
-        'c/-/(draft form moreproc nomoreproc length width showproc noshowproc header noheader help)/' \
-        'c,+,$folders,'  \
-        'n,-moreproc,c,'  \
-        'n,-showproc,c,'  \
-        'n,-form,f,'\
-        'n,*,`(mark | sed "s/:.*//";echo next cur prev first last)|tr " " "\12" | sort -u`,'
-
-    complete sortm \
-        'c/-/(datefield textfield notextfield limit nolimit noverbose verbose help)/' \
-        'c,+,$folders,'  \
-        'n,*,`(mark | sed "s/:.*//";echo next cur prev first last)|tr " " "\12" | sort -u`,'
-
-    complete vmh \
-        'c/-/(prompt vmhproc novmhproc help)/' \
-        'n,-vmhproc,c,'  
-
-    complete whatnow \
-        'c/-/(draftfolder draftmessage nodraftfolder editor noedit prompt help)/' 
-
-    complete whom \
-        'c/-/(alias nocheck check draft draftfolder draftmessage nodraftfolder help)/' \
-        'n,-alias,f,'
-
-    complete plum \
-        'c/-/()/' \
-        'c,+,$folders,'  \
-        'n,*,`(mark | sed "s/:.*//";echo next cur prev first last)|tr " " "\12" | sort -u`,'
-
-    complete mail \
-        'c/-/()/' \
-        'n/*/$mha/'
-
-    endif
-
-    if ( $?MODULESHOME ) then
-	alias Compl_module 'find ${MODULEPATH:as/:/ /} -name .version -o -name .modulea\* -prune -o -print  | sed `echo "-e s@${MODULEPATH:as%:%/\*@@g -e s@%}/\*@@g"`'
-	complete module 'p%1%(add load unload switch display avail use unuse update purge list clear help initadd initrm initswitch initlist initclear)%' \
-	'n%{unl*,sw*,inits*}%`echo "$LOADEDMODULES:as/:/ /"`%' \
-	'n%{lo*,di*,he*,inita*,initr*}%`eval Compl_module`%' \
-	'N%{sw*,initsw*}%`eval Compl_module`%' 'C%-%(-append)%' 'n%{use,unu*,av*}%d%' 'n%-append%d%' \
-	'C%[^-]*%`eval Compl_module`%'
-    endif
 
     complete acroread	'p/*/f:*.{pdf,PDF}/'
     complete apachectl  'c/*/(start stop restart fullstatus status graceful \
@@ -470,7 +277,7 @@ endif
 			token-table verbose version yacc)/' \
 			'c/-/(b d h k l n o p t v y V)/' 'n/-b/f/' 'n/-o/f/' \
 			'n/-p/f/'
-    complete bunzip2	'p/*/f:*.bz2/' 
+    complete bunzip2	'p/*/f:*.bz2/'
     complete bzip2	'n/-9/f:^*.bz2/' 'n/-d/f:*.bz2/'
     complete c++	'p/*/f:*.{c++,cxx,c,cc,C,cpp}/'
     complete co		'p@1@`\ls -1a RCS | sed -e "s/\(.*\),v/\1/"`@'
@@ -551,15 +358,8 @@ endif
 			startfile_ok tagsoup telnet term= tlog trace traversal \
 			underscore useragent= validate verbose version vikeys \
 			width=)/' 'c/(http|ftp)/$URLS/'
-
-if ( `sysctl -n kern.osreldate` >= 1000000 ) then
     complete make	'p@1@`make -ndg1 | & sed -n -E "/=/d; s/(^# )([_a-zA-Z\-]*),(.*)/\2/gp;"`@' \
 			'n@-V@`make -ndv | & grep Global: | sed -E -e "s/^Global://" -e "s/ .*//" -e "/^[[:lower:]]/d" | sort | uniq`@'
-else
-    complete make	'p@1@`make -pn | sed -n -E "/^[#_.\/[:blank:]]+/d; /=/d; s/[[:blank:]]*:.*//gp;"`@' \
-			'n@-V@`make -ndv | & grep Global: | sed -E -e "s/^Global://" -e "s/ .*//" -e "/^[[:lower:]]/d" | sort | uniq`@'
-endif
-
     complete gmake	'c/{--directory=,--include-dir=}/d/' \
 			'c/{--assume-new,--assume-old,--makefile,--new-file,--what-if,--file}/f/' \
 			'c/--/(assume-new= assume-old= debug directory= \
@@ -597,7 +397,7 @@ endif
     complete ndc	'n/*/(status dumpdb reload stats trace notrace \
 			querylog start stop restart )/'
 	if ($?traditional_complete) then
-    complete nm		'c/--/(debug-syms defined-only demangle dynamic \
+	complete nm		'c/--/(debug-syms defined-only demangle dynamic \
 			extern-only format= help line-numbers no-demangle \
 			no-sort numeric-sort portability print-armap \
 			print-file-name reverse-sort size-sort undefined-only \
@@ -672,7 +472,7 @@ endif
 			spiral spline sproingies stairs star starfish strange \
 			superquadrics swarm swirl tetris thornbird triangle \
 			tube turtle vines voters wator wire world worm xjack \
-			blank bomb random)/' 
+			blank bomb random)/'
     complete xfig	'c/-/(display)/' 'p/*/f:*.fig/'
     complete wget 	c/--/"(accept= append-output= background cache= \
 			continue convert-links cut-dirs= debug \
@@ -689,10 +489,6 @@ endif
 			recursive reject= relative retr-symlinks save-headers \
 			server-response span-hosts spider timeout= \
 			timestamping tries= user-agent= verbose version wait=)"/
-
-    # this one works but is slow and doesn't descend into subdirectories
-    # complete	cd	C@[./\$~]*@d@ \
-    #			p@1@'`\ls -1F . $cdpath | grep /\$ | sort -u`'@ n@*@n@
 
     if ( -r /etc/shells ) then
         complete setenv	p@1@e@ n@DISPLAY@\$hosts@: n@SHELL@'`cat /etc/shells`'@
@@ -763,35 +559,10 @@ setenv MANPATH `manpath`
 			c/-/"(b c d D e f F i l m n q s t v V x X -version)"/ \
 			n/-c/c/ n/{-l,--version}/n/ n/*/'f:*.{,t}csh'/
 
-    complete rpm	c/--/"(query verify nodeps nofiles nomd5 noscripts    \
-	                nogpg nopgp install upgrade freshen erase allmatches  \
-		        notriggers repackage test rebuild recompile initdb    \
-		        rebuilddb addsign resign querytags showrc setperms    \
-		        setugids all file group package querybynumber qf      \
-		        triggeredby whatprovides whatrequires changelog       \
-		        configfiles docfiles dump filesbypkg info last list   \
-		        provides queryformat requires scripts state triggers  \
-		        triggerscripts allfiles badreloc excludepath checksig \
-	                excludedocs force hash ignoresize ignorearch ignoreos \
-		        includedocs justdb noorder oldpackage percent prefix  \
-		        relocate replace-files replacepkgs buildroot clean    \
-		        nobuild rmsource rmspec short-circuit sign target     \
-		        help version quiet rcfile pipe dbpath root specfile)"/\
-		        c/-/"(q V K i U F e ba bb bp bc bi bl bs ta tb tp tc  \
-			ti tl ts a f g p c d l R s h ? v vv -)"/              \
-		n/{-f,--file}/f/ n/{-g,--group}/g/ n/--pipe/c/ n/--dbpath/d/  \
-		n/--querybynumber/x:'<number>'/ n/--triggeredby/x:'<package>'/\
-		n/--what{provides,requires}/x:'<capability>'/ n/--root/d/     \
-		n/--{qf,queryformat}/x:'<format>'/ n/--buildroot/d/           \
-		n/--excludepath/x:'<oldpath>'/  n/--prefix/x:'<newpath>'/     \
-		n/--relocate/x:'<oldpath=newpath>'/ n/--target/x:'<platform>'/\
-		n/--rcfile/x:'<filelist>'/ n/--specfile/x:'<specfile>'/       \
-	        n/{-[iUFep],--{install,upgrade,freshen,erase,package}}/f:*.rpm/
-
     if (-X emacs) then
       #set _emacs_ver=`emacs --version | sed -e 's%GNU Emacs %%' -e q | cut -d . -f1-2`
       set _emacs_ver=21.3
-      set _emacs_dir=`which emacs | sed s%/bin/emacs%%` 
+      set _emacs_dir=`which emacs | sed s%/bin/emacs%%`
       complete emacs	c/--/"(batch terminal display no-windows no-init-file \
                                user debug-init unibyte multibyte version help \
                                no-site-file funcall load eval insert kill)"/ \
@@ -986,93 +757,94 @@ setenv MANPATH `manpath`
 			N/{-C,--directory}/'`\ls $:-1`'/ \
 			n/-[0-7]/"(l m h)"/
 
-    complete  mount	c/-/"(a r t v)"/ n/-t/"(ufs msdosfs nfs nullfs tmpfs)"/ \
-	    		n@*@'`grep -v "^#" /etc/fstab | tr -s " " "	" | cut -f 1,2; \
-				ls /dev/{ada,da}* \
-				   /dev/{gpt,ufs,ntfs,msdosfs,diskid}/*`'@
-    complete umount	c/-/"(a h t v)"/ n/-t/"(ufs msdosfs nfs nullfs tmpfs)"/ \
-    			n/-h/'`df | cut -s -d ":" -f 1 | sort -u`'/ \
-    			n/*/'`mount | cut -d " " -f 3`'/
+	complete  mount	c/-/"(a r t v)"/ n/-t/"(ufs msdosfs nfs nullfs tmpfs)"/ \
+			n@*@'`grep -v "^#" /etc/fstab | tr -s " " "	" | cut -f 1,2; \
+			ls /dev/{ada,da}* \
+			/dev/{gpt,ufs,ntfs,msdosfs,diskid}/*`'@
+	complete umount	c/-/"(a h t v)"/ n/-t/"(ufs msdosfs nfs nullfs tmpfs)"/ \
+			n/-h/'`df | cut -s -d ":" -f 1 | sort -u`'/ \
+			n/*/'`mount | cut -d " " -f 3`'/
 
-    if (-X domainname) then
-      set _domain = "`domainname`"
-      set _ypdir  = /var/yp	# directory where NIS (YP) maps are kept
-      if ("$_domain" != "" && "$_domain" != "noname") then
-        complete domainname p@1@D:$_ypdir@" " n@*@n@
-        complete ypcat	    c@-@"(d k t x)"@ n@-x@n@ n@-d@D:$_ypdir@" " \
-	                    N@-d@\`\\ls\ -1\ $_ypdir/\$:-1\ \|\ sed\ -n\ s%\\\\.pag\\\$%%p\`@ \
-	                    n@*@\`\\ls\ -1\ $_ypdir/$_domain\ \|\ sed\ -n\ s%\\\\.pag\\\$%%p\`@
-        complete ypmatch    c@-@"(d k t x)"@ n@-x@n@ n@-d@D:$_ypdir@" " \
-	                    N@-d@x:'<key ...>'@ n@-@x:'<key ...>'@ p@1@x:'<key ...>'@ \
-	                    n@*@\`\\ls\ -1\ $_ypdir/$_domain\ \|\ sed\ -n\ s%\\\\.pag\\\$%%p\`@
-        complete ypwhich    c@-@"(d m t x V1 V2)"@ n@-x@n@ n@-d@D:$_ypdir@" " \
-	                    n@-m@\`\\ls\ -1\ $_ypdir/$_domain\ \|\ sed\ -n\ s%\\\\.pag\\\$%%p\`@ \
-			    N@-m@n@ n@*@\$hosts@
-      endif
-      unset _domain _ypdir
-    endif
+	if (-X domainname) then
+		set _domain = "`domainname`"
+		set _ypdir  = /var/yp	# directory where NIS (YP) maps are kept
 
-    if ( -f /etc/printcap ) then
-	set printers=(`sed -n -e "/^[^     #].*:/s/:.*//p" /etc/printcap`)
+		if ("$_domain" != "" && "$_domain" != "noname") then
+			complete domainname p@1@D:$_ypdir@" " n@*@n@
+			complete ypcat c@-@"(d k t x)"@ n@-x@n@ n@-d@D:$_ypdir@" " \
+				N@-d@\`\\ls\ -1\ $_ypdir/\$:-1\ \|\ sed\ -n\ s%\\\\.pag\\\$%%p\`@ \
+				n@*@\`\\ls\ -1\ $_ypdir/$_domain\ \|\ sed\ -n\ s%\\\\.pag\\\$%%p\`@
+			complete ypmatch c@-@"(d k t x)"@ n@-x@n@ n@-d@D:$_ypdir@" " \
+				N@-d@x:'<key ...>'@ n@-@x:'<key ...>'@ p@1@x:'<key ...>'@ \
+				n@*@\`\\ls\ -1\ $_ypdir/$_domain\ \|\ sed\ -n\ s%\\\\.pag\\\$%%p\`@
+			complete ypwhich c@-@"(d m t x V1 V2)"@ n@-x@n@ n@-d@D:$_ypdir@" " \
+				n@-m@\`\\ls\ -1\ $_ypdir/$_domain\ \|\ sed\ -n\ s%\\\\.pag\\\$%%p\`@ \
+				N@-m@n@ n@*@\$hosts@
+		endif
+		unset _domain _ypdir
+	endif
 
-	complete lpr    'c/-P/$printers/'
-	complete lpq    'c/-P/$printers/'
-	complete lprm   'c/-P/$printers/'
-	complete lpquota        'p/1/(-Qprlogger)/' 'c/-P/$printers/'
-	complete dvips  'c/-P/$printers/' 'n/-o/f:*.{ps,PS}/' 'n/*/f:*.dvi/'
-	complete dvilj	'p/*/f:*.dvi/'
-    endif
+	if ( -f /etc/printcap ) then
+		set printers=(`sed -n -e "/^[^	 #].*:/s/:.*//p" /etc/printcap`)
 
-    if ($?P4CLIENT && -X perl) then
-	set p4cmds=(add branch branches commands change changes client clients \
-	    counter counters delete depot depots describe diff diff2 \
-	    edit filelog files fix fixes fstat group groups have help \
-	    info integrate integrated job jobs jobspec label labels \
-	    labelsync lock obliterate opened passwd print protect rename \
-	    reopen resolve resolved revert review reviews set submit \
-	    sync triggers unlock user users verify where)
-	complete p4 'p/1/$p4cmds/' 'n/help/$p4cmds/' \
-	    'n%{-l,label}%`p4 labels | sed "s/Label \([^ ]*\) .*/\1/"`%' \
-	    'n%-t%`p4 $:1s | sed "s/[^ ]* \([^ ]*\) .*/\1/"`%' \
-	    'c%*@%`p4 labels | sed "s/Label \([^ ]*\) .*/\1/"`%' \
-	    'c@//*/*@`p4 files $:-0... |& perl -nle "m%\Q$:-0\E([^#][^/# ] \
-	    *)%;print "\$"1 if \\\!/no such/&&\!"\$"h{"\$"1}++"`@@' \
-	    'c@//@`p4 depots | sed "s/Depot \([^ ]*\) .*/\1/"`@/@'
-    endif
+		complete lpr 'c/-P/$printers/'
+		complete lpq 'c/-P/$printers/'
+		complete lprm 'c/-P/$printers/'
+		complete lpquota 'p/1/(-Qprlogger)/' 'c/-P/$printers/'
+		complete dvips 'c/-P/$printers/' 'n/-o/f:*.{ps,PS}/' 'n/*/f:*.dvi/'
+		complete dvilj 'p/*/f:*.dvi/'
+	endif
+
+	if ($?P4CLIENT && -X perl) then
+		set p4cmds=(add branch branches commands change changes client clients \
+			counter counters delete depot depots describe diff diff2 \
+			edit filelog files fix fixes fstat group groups have help \
+			info integrate integrated job jobs jobspec label labels \
+			labelsync lock obliterate opened passwd print protect rename \
+			reopen resolve resolved revert review reviews set submit \
+			sync triggers unlock user users verify where)
+		complete p4 'p/1/$p4cmds/' 'n/help/$p4cmds/' \
+			'n%{-l,label}%`p4 labels | sed "s/Label \([^ ]*\) .*/\1/"`%' \
+			'n%-t%`p4 $:1s | sed "s/[^ ]* \([^ ]*\) .*/\1/"`%' \
+			'c%*@%`p4 labels | sed "s/Label \([^ ]*\) .*/\1/"`%' \
+			'c@//*/*@`p4 files $:-0... |& perl -nle "m%\Q$:-0\E([^#][^/# ] \
+			*)%;print "\$"1 if \\\!/no such/&&\!"\$"h{"\$"1}++"`@@' \
+			'c@//@`p4 depots | sed "s/Depot \([^ ]*\) .*/\1/"`@/@'
+	endif
 
 
 	if (! $?traditional_complete) then
-    uncomplete vi
-    uncomplete vim
-    complete {vi,vim,gvim,nvi,elvis} 	n/*/f:^*.{o,a,so,sa,aux,dvi,fig,bbl,blg,bst,idx,ilg,ind,toc}/
-    complete {ispell,spell,spellword}	'n@-d@`ls /usr/lib/ispell/*.aff | sed -e "s/\.aff//" `@' 'n/*/f:^*.{o,a,so,sa,aux,dvi,log,fig,bbl,blg,bst,idx,ilg,ind,toc}/'
-    complete elm	'n/-[Ai]/f/' 'c@=@F:$HOME/Mail/@' 'n/-s/x:\<subject\>/'
-    complete ncftp	'n@*@`sed -e '1,2d' $HOME/.ncftp/bookmarks | cut -f 1,2 -d "," | tr "," "\012" | sort | uniq ` '@
-    complete bibtex	'n@*@`ls *.aux | sed -e "s/\.aux//"`'@
-    complete dvi2tty	n/*/f:*.dvi/	# Only files that match *.dvi
-	uncomplete gv
-	uncomplete ghostview
-    complete {gv,ghostview}	'n/*/f:*.{ps,eps,epsi}/'
-    complete enscript \
-		'c/--/(columns= pages= header= no-header truncate-lines \
-			line-numbers setpagedevice= escapes font= \
-			header-font= fancy-header no-job-header \
-			highlight-bars indent= filter= borders page-prefeed \
-			no-page-prefeed lineprinter lines-per-page= mail \
-			media= copies= newline= output= missing-characters \
-			printer= quiet silent landscape portrait \
-			baselineskip= statusdict= title= tabsize= underlay= \
-			verbose version encoding pass-through download-font= \
-			filter-stdin= help highlight-bar-gray= list-media \
-			list-options non-printable-format= page-label-format= \
-			printer-options= ul-angle= ul-font= ul-gray= \
-			ul-position= ul-style= \
-		     )/'
+		uncomplete vi
+		uncomplete vim
+		complete {vi,vim,gvim,nvi,elvis} 	n/*/f:^*.{o,a,so,sa,aux,dvi,fig,bbl,blg,bst,idx,ilg,ind,toc}/
+		complete {ispell,spell,spellword}	'n@-d@`ls /usr/lib/ispell/*.aff | sed -e "s/\.aff//" `@' 'n/*/f:^*.{o,a,so,sa,aux,dvi,log,fig,bbl,blg,bst,idx,ilg,ind,toc}/'
+		complete elm	'n/-[Ai]/f/' 'c@=@F:$HOME/Mail/@' 'n/-s/x:\<subject\>/'
+		complete ncftp	'n@*@`sed -e '1,2d' $HOME/.ncftp/bookmarks | cut -f 1,2 -d "," | tr "," "\012" | sort | uniq ` '@
+		complete bibtex	'n@*@`ls *.aux | sed -e "s/\.aux//"`'@
+		complete dvi2tty	n/*/f:*.dvi/	# Only files that match *.dvi
+		uncomplete gv
+		uncomplete ghostview
+		complete {gv,ghostview}	'n/*/f:*.{ps,eps,epsi}/'
+		complete enscript \
+			'c/--/(columns= pages= header= no-header truncate-lines \
+				line-numbers setpagedevice= escapes font= \
+				header-font= fancy-header no-job-header \
+				highlight-bars indent= filter= borders page-prefeed \
+				no-page-prefeed lineprinter lines-per-page= mail \
+				media= copies= newline= output= missing-characters \
+				printer= quiet silent landscape portrait \
+				baselineskip= statusdict= title= tabsize= underlay= \
+				verbose version encoding pass-through download-font= \
+				filter-stdin= help highlight-bar-gray= list-media \
+				list-options non-printable-format= page-label-format= \
+				printer-options= ul-angle= ul-font= ul-gray= \
+				ul-position= ul-style= \
+			     )/'
 	endif
 
-    unset noglob
-    unset _complete
-    unset traditional_complete
+	unset noglob
+	unset _complete
+	unset traditional_complete
 endif
 
 end:
