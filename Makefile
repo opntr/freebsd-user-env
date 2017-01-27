@@ -19,6 +19,7 @@ install:
 .endif
 	install -m 0440 dot.gitconfig		$(HOME)/.gitconfig
 	install -m 0440 dot.git/hbsd-template	$(HOME)/.git/hbsd-template
+	install -m 0440 dot.git/opbsd-template	$(HOME)/.git/opbsd-template
 .if ${UID} == 0
 	install -m 0550 bin/_hbsd_build_kernel.csh	$(HOME)/bin/_hbsd_build_kernel.csh
 	install -m 0550 bin/_hbsd_build_world.csh	$(HOME)/bin/_hbsd_build_world.csh
