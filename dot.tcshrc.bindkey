@@ -7,7 +7,7 @@ switch ( $OSTYPE )
 		bindkey	'^[[2~'	overwrite-mode
 
 		# DELETE : delete char at cursor position.
-		bindkey	'^?'	delete-char
+		#bindkey	'^?'	delete-char # commented out due tmux error
 		bindkey	'^[[3~'	delete-char
 
 		# HOME : go to the beginning of the line.
@@ -24,7 +24,7 @@ switch ( $OSTYPE )
 		# PAGE DOWN : search in history forwards for line beginning as current.
 		bindkey	'^[[6~'	history-search-forward
 
-		# ESC-LeftArrow : go to beginning of left word.        
+		# ESC-LeftArrow : go to beginning of left word.
 		bindkey	'^[^[[D'	vi-word-back
 
 		# ESC-RightArrow : go to beginning of right word.
