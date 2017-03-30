@@ -1,5 +1,5 @@
 #/usr/local/bin/xrandr --output default --mode 1366x768
-/usr/local/bin/xrandr --dpi 75
+/usr/local/bin/xrandr --dpi 80
 /usr/local/bin/xmodmap
 /usr/local/bin/xbindkeys
 /usr/local/bin/xsetroot -solid black
