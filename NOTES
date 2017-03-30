@@ -1,0 +1,2 @@
+* fix unreadable fonts in firefox and/or thunderbird, remove the .config/fontconfig/* files and the old ~/.font* caches and directories
+
