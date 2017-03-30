@@ -9,12 +9,12 @@ EndSection
 
 Section "Files"
 	ModulePath   "/usr/local/lib/xorg/modules"
-	FontPath     "/usr/local/lib/X11/fonts/misc/"
-	FontPath     "/usr/local/lib/X11/fonts/TTF/"
-	FontPath     "/usr/local/lib/X11/fonts/OTF/"
-	FontPath     "/usr/local/lib/X11/fonts/Type1/"
-	FontPath     "/usr/local/lib/X11/fonts/100dpi/"
-	FontPath     "/usr/local/lib/X11/fonts/75dpi/"
+	FontPath     "/usr/local/share/fonts/misc/"
+	FontPath     "/usr/local/share/fonts/TTF/"
+	FontPath     "/usr/local/share/fonts/OTF/"
+	FontPath     "/usr/local/share/fonts/Type1/"
+	FontPath     "/usr/local/share/fonts/100dpi/"
+	FontPath     "/usr/local/share/fonts/75dpi/"
 EndSection
 
 Section "Module"
