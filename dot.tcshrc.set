@@ -6,7 +6,7 @@ set fignore = (.o)
 set histdup = prev
 set histfile = ${HOME}/.tcsh_history
 set history = 8192
-set savehist = (8192 merge lock)
+set savehist = (8192 merge)
 set inputmode = insert
 set listjobs
 set nobeep
