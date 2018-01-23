@@ -45,4 +45,6 @@ map <F4> ^iX-MFC-with: <ESC>^
 map! <F4> X-MFC-with: 
 map <F5> ^iSigned-off-by: Oliver Pinter <oliver.pntr@gmail.com><CR><ESC>^
 map! <F5> Signed-off-by: Oliver Pinter <oliver.pntr@gmail.com><CR>
-
+map <F10> :execute "lprev" <CR>
+map <F11> :execute "lvimgrep /" . expand("<cword>") . "/j **" <Bar> lopen<CR>
+map <F12> :execute "lnext"<CR>
