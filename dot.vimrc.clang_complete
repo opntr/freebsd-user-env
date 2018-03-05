@@ -2,7 +2,9 @@ syntax		on
 filetype	on
 filetype	plugin on
 filetype	indent on
-colorscheme	koehler
+"colorscheme	koehler
+"colorscheme	pablo
+colorscheme	slate
 
 let		c_space_errors=1
 let		g:clang_use_library=1
