@@ -42,7 +42,7 @@ highlight	WhitespaceEOL ctermbg=red guibg=red
 match		WhitespaceEOL /\s\+$/
 
 function! BSD_Kernel_C_clang_user_options()
-	let g:hbsd_srctop_dir=system("git rev-parse --show-toplevel")
+	let g:hbsd_srctop_dir=system("git rev-parse --show-toplevel | tr -d '\\n'")
 
 	let g:clang_user_options=g:clang_user_options.'-I/usr/obj/usr/src/amd64.amd64/sys/OP-HBSD/ '
 	let g:clang_user_options=g:clang_user_options.'-I/usr/obj/usr/src/amd64.amd64/sys/OP-HBSD/machine/ '
@@ -56,6 +56,7 @@ function! BSD_Kernel_C_clang_user_options()
 	let g:clang_user_options=g:clang_user_options.'-DPAX_SYSCTLS '
 	let g:clang_user_options=g:clang_user_options.'-DPAX_SEGVGUARD '
 	let g:clang_user_options=g:clang_user_options.'-DPAX_JAIL_SUPPORT '
+	let g:clang_user_options=g:clang_user_options."-I".g:hbsd_srctop_dir."/sys/ "
 	let g:clang_user_options=g:clang_user_options."-I".g:hbsd_srctop_dir."/sys/sys/ "
 	let g:clang_user_options=g:clang_user_options."-I".g:hbsd_srctop_dir."/sys/vm/ "
 endfunction
