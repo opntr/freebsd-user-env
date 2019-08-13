@@ -15,7 +15,7 @@ set		backspace+=start,eol,indent
 
 let		c_space_errors=1
 let		g:clang_use_library=1
-let		g:clang_library_path="/usr/local/llvm70/lib/libclang.so"
+let		g:clang_library_path=system("find /usr/local/llvm* -name \"libclang.so\" | sort | tail -1 | tr -d '\\n'")
 let		g:clang_close_preview=1
 let		g:clang_trailing_placeholder=1
 let		g:clang_complete_copen=1
@@ -59,7 +59,7 @@ function! BSD_Kernel_C_clang_user_options()
 	let g:clang_user_options=g:clang_user_options."-I".g:hbsd_srctop_dir."/sys/sys/ "
 	let g:clang_user_options=g:clang_user_options."-I".g:hbsd_srctop_dir."/sys/vm/ "
 endfunction
-autocmd     BufRead,BufNewFile  */sys/*.c,*/sys/*.h,*/sys/*.cpp,*/sys/*.hpp call BSD_Kernel_C_clang_user_options()
+autocmd     BufRead,BufNewFile  */sys/**.c,*/sys/**.h,*/sys/**.cpp,*/sys/**.hpp call BSD_Kernel_C_clang_user_options()
 
 inoremap <Nul> <C-x><C-o>
 
