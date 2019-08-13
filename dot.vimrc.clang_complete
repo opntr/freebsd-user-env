@@ -10,11 +10,12 @@ set		cindent
 set		hlsearch
 set		backspace+=start,eol,indent
 
-set             tags+=.tags;
-set             tags+=$HOME/.vim/tags/system.ctags
+"set             tags+=.tags;
+"set             tags+=$HOME/.vim/tags/system.ctags
 
 let		c_space_errors=1
 let		g:clang_use_library=1
+let		g:clang_library_path="/usr/local/llvm70/lib/libclang.so"
 let		g:clang_close_preview=1
 let		g:clang_trailing_placeholder=1
 let		g:clang_complete_copen=1
@@ -36,15 +37,27 @@ elseif &term =~ "screen"
 	let	g:clang_jumpto_back_key="^[[C"
 endif
 
+
 highlight	WhitespaceEOL ctermbg=red guibg=red
 match		WhitespaceEOL /\s\+$/
 
 function! BSD_Kernel_C_clang_user_options()
+	let g:hbsd_srctop_dir=system("git rev-parse --show-toplevel")
+
+	let g:clang_user_options=g:clang_user_options.'-I/usr/obj/usr/src/amd64.amd64/sys/OP-HBSD/ '
+	let g:clang_user_options=g:clang_user_options.'-I/usr/obj/usr/src/amd64.amd64/sys/OP-HBSD/machine/ '
 	let g:clang_user_options=g:clang_user_options.'-D_KERNEL_ '
-	let g:clang_user_options=g:clang_user_options.'-I/usr/obj/usr/src/sys/OP-HBSD/ '
-	let g:clang_user_options=g:clang_user_options.'-I/usr/src/ '
-	let g:clang_user_options=g:clang_user_options.'/usr/obj/usr/src/sys/OP-HBSD/machine/ '
-	let g:clang_user_options=g:clang_user_options.'/usr/src/sys/ '
+	let g:clang_user_options=g:clang_user_options.'-DPAX '
+	let g:clang_user_options=g:clang_user_options.'-DPAX_CONTROL_ACL '
+	let g:clang_user_options=g:clang_user_options.'-DPAX_CONTROL_EXTATTR '
+	let g:clang_user_options=g:clang_user_options.'-DPAX_ASLR '
+	let g:clang_user_options=g:clang_user_options.'-DPAX_HARDENING '
+	let g:clang_user_options=g:clang_user_options.'-DPAX_NOEXEC '
+	let g:clang_user_options=g:clang_user_options.'-DPAX_SYSCTLS '
+	let g:clang_user_options=g:clang_user_options.'-DPAX_SEGVGUARD '
+	let g:clang_user_options=g:clang_user_options.'-DPAX_JAIL_SUPPORT '
+	let g:clang_user_options=g:clang_user_options."-I".g:hbsd_srctop_dir."/sys/sys/ "
+	let g:clang_user_options=g:clang_user_options."-I".g:hbsd_srctop_dir."/sys/vm/ "
 endfunction
 autocmd     BufRead,BufNewFile  */sys/*.c,*/sys/*.h,*/sys/*.cpp,*/sys/*.hpp call BSD_Kernel_C_clang_user_options()
 
